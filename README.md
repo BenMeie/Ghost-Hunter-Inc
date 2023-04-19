@@ -9,7 +9,7 @@
   </a>
 
   <h3 align="center">Ghost Hunter Inc. <br /></h3>
-
+  
   <p align="center">
     A 1 month game made by CSUMB students
     <br />
