@@ -79,6 +79,7 @@ Ghost Hunter Inc is a pretty easy game to install! Here is how.
 ```sh
   //TODO: Put everything used to create the game
   * [name of the website](link)
+  * [NavMeshPlus](https://github.com/h8man/NavMeshPlus)
   ```
 README.md
 * [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
