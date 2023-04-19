@@ -84,6 +84,9 @@ README.md
 * [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
 * [GitHub Best README Template](https://github.com/othneildrew/Best-README-Template/blob/master/README.md#readme-top)
 
+Sprites
+* [Ghost : Penzilla - Hooded Protagonist](https://penzilla.itch.io/hooded-protagonist)
+
 <p align="right"><a href="#readme-top">:arrow_up:back to top</a></p>
 
 <!-- Markdowns/links -->
