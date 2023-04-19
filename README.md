@@ -9,7 +9,7 @@
   </a>
 
   <h3 align="center">Ghost Hunter Inc. <br /></h3>
-
+  
   <p align="center">
     A 1 month game made by CSUMB students
     <br />
@@ -66,12 +66,12 @@ Ghost Hunter Inc is a pretty easy game to install! Here is how.
 ```sh
   //TODO: what the user need to do before installing the game
   ```
-
+  
 ### Installation
 ```sh
   //TODO: what the user need to do to install the game
   ```
-
+  
 <p align="right"><a href="#readme-top">:arrow_up:back to top</a></p>
 
 <!-- Acknowledgments -->
