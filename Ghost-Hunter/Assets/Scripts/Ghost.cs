@@ -8,7 +8,7 @@ public class Ghost : MonoBehaviour
     public Transform target;
     public GameObject ghostSprite;
     public int angerLevel = 0;
-    public bool updating;
+    public bool updating = true;
 
     private NavMeshAgent agent;
     
@@ -17,8 +17,7 @@ public class Ghost : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         agent.SetDestination(target.position);
-
-        updating = true;
+        UpdateDifficulty();
         StartCoroutine(UpdateTarget());
     }
 
