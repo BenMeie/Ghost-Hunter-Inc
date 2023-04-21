@@ -7,7 +7,7 @@ public class Ghost : MonoBehaviour
 {
     public Transform target;
     public GameObject ghostSprite;
-    public int angerLevel = 0;
+    public int angerLevel = 1;
     public bool updating = true;
 
     private NavMeshAgent agent;
@@ -80,8 +80,19 @@ public class Ghost : MonoBehaviour
     {
         while (updating)
         {
-            yield return new WaitForSeconds(0.5f);
-            agent.SetDestination(target.position);
+            Vector3 targetPosition = target.position;
+            Vector3 currentPosition = transform.position;
+            yield return new WaitForSeconds(10.0f/angerLevel);
+            int followChance = Random.Range(1, 11) * angerLevel;
+            if (followChance > 60)
+            {
+                agent.SetDestination(targetPosition);
+            }
+            else if (followChance < 30 && angerLevel < 20)
+            {
+                agent.SetDestination(new Vector3(currentPosition.x + Random.Range(-5.0f, 5.0f),currentPosition.y + Random.Range(-5.0f, 5.0f), currentPosition.z));
+            }
+            UpdateDifficulty();
         }
     }
 }
