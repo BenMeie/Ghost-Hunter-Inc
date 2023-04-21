@@ -49,12 +49,12 @@ Ghost Hunter Inc is an isometric pixel art style game where you find the necessa
 <p align="right"><a href="#readme-top">:arrow_up:back to top</a></p>
 
 ### Contributors
-* <a href="https://github.com/LunaPak14"> <img src="https://avatars.githubusercontent.com/u/100417910?v=4" width="25" height="25"> Abigaëlle Panhelleux </a>
-* <a href="https://github.com/BenMeier"> <img src="https://avatars.githubusercontent.com/u/38326866?v=4" width="25" height="25"> Benjamin Meier </a>
-* <a href="https://github.com/blacey15"> <img src="https://avatars.githubusercontent.com/u/95391444?v=4" width="25" height="25"> Brielle Lacey </a>
-* <a href="https://github.com/WebbontheWeb"> <img src="https://avatars.githubusercontent.com/u/93842126?v=4" width="25" height="25"> Chris Webb </a>
-* <a href="https://github.com/jrivera404"> <img src="https://avatars.githubusercontent.com/u/63984237?v=4" width="25" height="25"> Joseph Rivera </a>
-* <a href="https://github.com/Noel-Hann"> <img src="https://avatars.githubusercontent.com/u/100455367?v=4" width="25" height="25"> Noel Hann </a>
+* <img src="https://user-images.githubusercontent.com/100417910/233239627-8f44252b-65a1-469c-8452-45a18b73e33c.gif"> <a href="https://github.com/LunaPak14"> Abigaëlle Panhelleux </a>
+* <img src="https://user-images.githubusercontent.com/100417910/233239620-6b0f7540-5d4d-4d02-9cd9-55b378dbd370.gif"> <a href="https://github.com/BenMeier"> Benjamin Meier </a>
+* <img src="https://user-images.githubusercontent.com/100417910/233239619-a0851799-0f07-4b22-b8d0-f9e36710021a.gif"> <a href="https://github.com/blacey15"> Brielle Lacey </a>
+* <img src="https://user-images.githubusercontent.com/100417910/233239623-4d830bdc-b907-4274-a684-2349a50e8bed.gif"> <a href="https://github.com/WebbontheWeb"> Chris Webb </a>
+* <img src="https://user-images.githubusercontent.com/100417910/233239625-d3155c67-9bd0-4045-bc7c-7a6969cb4e1b.gif"> <a href="https://github.com/jrivera404"> Joseph Rivera </a> 
+* <img src="https://user-images.githubusercontent.com/100417910/233239624-ae32c7a3-b587-40ca-9dad-a9c8562907e2.gif"> <a href="https://github.com/Noel-Hann"> Noel Hann </a>
 
 <p align="right"><a href="#readme-top">:arrow_up:back to top</a></p>
 
@@ -86,6 +86,7 @@ README.md
 
 Sprites
 * [Ghost : Penzilla - Hooded Protagonist](https://penzilla.itch.io/hooded-protagonist)
+* [PIPOYA character 32x32 sprites generator](https://pipoya.itch.io/pipoya-free-rpg-character-sprites-32x32)
 
 <p align="right"><a href="#readme-top">:arrow_up:back to top</a></p>
 
