@@ -10,7 +10,7 @@ public class LightningController : MonoBehaviour
     void Start()
     {
         lightningAnimator = GetComponent<Animator>();
-        StartCoroutine(LightningStrike());
+        StartCoroutine(LightningTimer());
     }
 
     void LightningStrike(){
