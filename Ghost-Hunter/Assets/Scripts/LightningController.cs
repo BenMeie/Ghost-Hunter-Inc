@@ -14,7 +14,7 @@ public class LightningController : MonoBehaviour
     }
 
     void LightningStrike(){
-        lightningAnimator.SetTrigger("lightning");
+        lightningAnimator.SetTrigger("Lightning Strike");
     }
 
     
@@ -22,6 +22,7 @@ public class LightningController : MonoBehaviour
 	{
         //want to replace with a random number
         yield return new WaitForSeconds(20f);
+        
         
         LightningStrike();
         LightningTimer();
