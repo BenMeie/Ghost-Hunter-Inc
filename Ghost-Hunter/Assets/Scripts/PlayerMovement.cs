@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
 
     private Transform myTransform;
     private Rigidbody2D myRigidbody;
+    private Vector2 movement;
+    
 
     public float speed = 2f;
     
@@ -25,6 +27,11 @@ public class PlayerMovement : MonoBehaviour
         bool horizontalButtonPressed = Input.GetButton("Horizontal");
         bool verticalButtonPressed = Input.GetButton("Vertical");
 
+        //code inspired by a Brackeys video
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
+        myRigidbody.velocity = movement.normalized * speed;
+        /*
         if (horizontalButtonPressed || verticalButtonPressed)
         {
             moveCharacter(horizontalButtonPressed,verticalButtonPressed);
@@ -35,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
             myRigidbody.velocity = Vector2.zero;
         }
 
-        
+        */
     }
 
     void moveCharacter(bool moveHorizontal, bool moveVertical)
@@ -84,6 +91,14 @@ public class PlayerMovement : MonoBehaviour
         
         Vector3 newRotation = new Vector3(0, 0,rotation);
         myTransform.rotation = Quaternion.Euler(newRotation);
+    }
+
+    private void rotateCharacter(Vector2 movement)
+    {
+        float xDirection = movement.x;
+        float yDirection = movement.y;
+
+        
     }
     
 }
