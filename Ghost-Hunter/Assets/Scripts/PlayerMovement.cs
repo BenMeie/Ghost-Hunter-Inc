@@ -148,7 +148,7 @@ public class PlayerMovement : MonoBehaviour
         }
         
 
-        Debug.Log($"Rotation should be {myRotation}");
+        // Debug.Log($"Rotation should be {myRotation}");
         
         //TODO figure out how to set the rotation to the value I want
         Vector3 newRotation = new Vector3(0, 0, myRotation);
