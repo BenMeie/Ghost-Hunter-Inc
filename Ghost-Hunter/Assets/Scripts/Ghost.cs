@@ -2,29 +2,57 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 public class Ghost : MonoBehaviour
 {
     public Transform target;
-    public GameObject ghostSprite;
+    [FormerlySerializedAs("ghostSprite")] public GameObject spriteObject;
     public int angerLevel = 1;
     public bool updating = true;
 
     private NavMeshAgent agent;
+    private Animator animController;
+    private SpriteRenderer sprite;
     
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         agent.SetDestination(target.position);
+        animController = spriteObject.GetComponent<Animator>();
+        sprite = spriteObject.GetComponent<SpriteRenderer>();
+        
         UpdateDifficulty();
         StartCoroutine(UpdateTarget());
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        ghostSprite.transform.rotation = Quaternion.identity;
+        spriteObject.transform.rotation = Quaternion.identity;
+        if (agent.velocity.magnitude > 1.0f)
+        {
+            animController.Play("Run");
+        }
+        else if (agent.velocity.magnitude > 0.0f)
+        {
+            animController.Play("Walk");
+        }
+        else
+        {
+            animController.Play("Idle");
+        }
+
+        if (agent.velocity.x < 0)
+        {
+            sprite.flipX = true;
+        }
+        else if (agent.velocity.x > 0)
+        {
+            sprite.flipX = false;
+        }
     }
 
     public void IncreaseAnger(int by = 1)
@@ -90,7 +118,7 @@ public class Ghost : MonoBehaviour
             }
             else if (followChance < 30 && angerLevel < 20)
             {
-                agent.SetDestination(new Vector3(currentPosition.x + Random.Range(-5.0f, 5.0f),currentPosition.y + Random.Range(-5.0f, 5.0f), currentPosition.z));
+                agent.SetDestination(new Vector3(targetPosition.x + Random.Range(-10.0f, 10.0f),targetPosition.y + Random.Range(-10.0f, 10.0f), currentPosition.z));
             }
             UpdateDifficulty();
         }
