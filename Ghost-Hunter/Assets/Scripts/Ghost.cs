@@ -9,6 +9,7 @@ public class Ghost : MonoBehaviour
     public Transform target;
     [FormerlySerializedAs("ghostSprite")] public GameObject spriteObject;
     public int angerLevel = 1;
+    public int minAnger = 1;
     public bool updating = true;
 
     private NavMeshAgent agent;
@@ -25,7 +26,7 @@ public class Ghost : MonoBehaviour
         
         UpdateDifficulty();
         StartCoroutine(UpdateTarget());
-        
+        StartCoroutine(Calm());
     }
 
     // Update is called once per frame
@@ -55,6 +56,11 @@ public class Ghost : MonoBehaviour
         }
     }
 
+    public void IncreaseMinAnger(int by = 5)
+    {
+        minAnger += 5;
+    }
+
     public void IncreaseAnger(int by = 1)
     {
         angerLevel += by;
@@ -63,6 +69,7 @@ public class Ghost : MonoBehaviour
 
     public void DecreaseAnger(int by = 1)
     {
+        if (angerLevel <= minAnger) return;
         angerLevel -= by;
         UpdateDifficulty();
     }
@@ -102,6 +109,8 @@ public class Ghost : MonoBehaviour
                 agent.speed = 2f;
                 break;
         }
+        StopCoroutine(UpdateTarget());
+        StartCoroutine(UpdateTarget());
     }
 
     IEnumerator UpdateTarget()
@@ -120,7 +129,15 @@ public class Ghost : MonoBehaviour
             {
                 agent.SetDestination(new Vector3(targetPosition.x + Random.Range(-10.0f, 10.0f),targetPosition.y + Random.Range(-10.0f, 10.0f), currentPosition.z));
             }
-            UpdateDifficulty();
+        }
+    }
+
+    IEnumerator Calm()
+    {
+        while (updating)
+        {
+            yield return new WaitForSeconds(1);
+            DecreaseAnger();
         }
     }
 }

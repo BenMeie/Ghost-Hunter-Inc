@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,19 @@ public class FlashlightController : MonoBehaviour
     public float depleteRate = 1f;
     public float rechargeRate = 5f;
 
+    private Vector2 position2D;
+    private Vector2 lookDir;
+
+    private void Start()
+    {
+        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        position2D = new Vector2(transform.position.x, transform.position.y);
+        lookDir = mousePos - position2D;
+        lookDir.Normalize();
+        
+        StartCoroutine(checkLightCollision(lookDir));
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -28,8 +42,9 @@ public class FlashlightController : MonoBehaviour
 
     private void FixedUpdate()
     {   
-        Vector2 position2D = new Vector2(transform.position.x, transform.position.y);
-        Vector2 lookDir = mousePos - position2D;
+        position2D = new Vector2(transform.position.x, transform.position.y);
+        lookDir = mousePos - position2D;
+        lookDir.Normalize();
         float angle = Mathf.Atan2(lookDir.y ,lookDir.x) * Mathf.Rad2Deg - 90f;
         transform.rotation = Quaternion.Euler(0, 0, angle);
 
@@ -48,5 +63,31 @@ public class FlashlightController : MonoBehaviour
     void ToggleFlashlight(){
         flashlightOn = !flashlightOn;
         light.enabled = flashlightOn;
+        StopCoroutine(checkLightCollision(lookDir));
+        StartCoroutine(checkLightCollision(lookDir));
+    }
+
+    IEnumerator checkLightCollision(Vector2 lookDir)
+    {
+        while (flashlightOn)
+        {
+            // print("Checking for Ghost");
+            if (Physics.SphereCast(transform.position, 0.5f, new Vector3(lookDir.x, lookDir.y, 0), out var hitInfo, 3.5f))
+            {
+                if (hitInfo.collider.gameObject.CompareTag("Ghost"))
+                {
+                    print("Founds Ghost");
+                    hitInfo.collider.gameObject.BroadcastMessage("IncreaseAnger", 1);
+                }
+            }
+
+            yield return new WaitForSeconds(0.2f);
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position + new Vector3(lookDir.x, lookDir.y, 0) * 3.5f, 0.5f);
     }
 }

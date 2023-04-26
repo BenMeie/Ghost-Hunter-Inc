@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private Transform myTransform;
     private Rigidbody2D myRigidbody;
     private Vector2 movement;
+    private Camera main;
     
 
     public float speed = 2f;
@@ -17,13 +18,12 @@ public class PlayerMovement : MonoBehaviour
     {
         myTransform = GetComponent<Transform>();
         myRigidbody = GetComponent<Rigidbody2D>();
+        main = Camera.main;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        
         bool horizontalButtonPressed = Input.GetButton("Horizontal");
         bool verticalButtonPressed = Input.GetButton("Vertical");
 
@@ -44,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         */
+        main.transform.position = new Vector3(myTransform.position.x, myTransform.position.y, -10);
     }
 
     void moveCharacter(bool moveHorizontal, bool moveVertical)
