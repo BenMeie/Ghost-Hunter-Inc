@@ -28,72 +28,23 @@ public class PlayerMovement : MonoBehaviour
         bool verticalButtonPressed = Input.GetButton("Vertical");
 
         //code inspired by a Brackeys video
+        moveCharacter();
+        rotateCharacter(movement.normalized);
+        
+    }
+
+    //uses axis to control what direction the player is going, and then moves the character
+    //in that direction
+    void moveCharacter()
+    {
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
         myRigidbody.velocity = movement.normalized * speed;
-        rotateCharacter(movement.normalized);
-        /*
-        if (horizontalButtonPressed || verticalButtonPressed)
-        {
-            moveCharacter(horizontalButtonPressed,verticalButtonPressed);
-           
-        }
-        else
-        {
-            myRigidbody.velocity = Vector2.zero;
-        }
-
-        */
     }
 
-    void moveCharacter(bool moveHorizontal, bool moveVertical)
-    {
-       
-        float direction;
-        float rotation;// = 0f;
-
-        if (moveHorizontal && !moveVertical)
-        {
-
-            direction = Input.GetAxis("Horizontal");
-
-            myRigidbody.velocity = Vector2.right * (direction * speed);
-
-            if (direction < 0)//a pressed down
-            {
-                rotation = 90f;
-            }
-            else //d pressed down
-            {
-                rotation = 270f;
-            }
-        }
-
-        else if (moveVertical && !moveHorizontal)
-        {
-
-            direction = Input.GetAxis("Vertical");
-
-            myRigidbody.velocity = Vector2.up * (direction * speed);
-            
-            if (direction < 0)//s pressed down
-            {
-                rotation = 180f;
-            }
-            else //w pressed down
-            {
-                rotation = 0f;
-            }
-        }
-        else //if two buttons are pressed at the same time
-        {
-            return;
-        }
-        
-        Vector3 newRotation = new Vector3(0, 0,rotation);
-        myTransform.rotation = Quaternion.Euler(newRotation);
-    }
-
+    //figures out the general direction that the player is going, and rotates it to face that direction
+    //currently this works by literally changing the rotation, but ultimately it should send a number
+    //to the animator, which will choose which sprite animation to run
     private void rotateCharacter(Vector2 movement)
     {
 
@@ -106,22 +57,22 @@ public class PlayerMovement : MonoBehaviour
 
         float myRotation = 0;
 
-        if (xDirection > 0)//if x is positive, we want to start at 0 degrees
+        if (xDirection > 0)//if x is positive, we are moving to the right
         {
             myRotation = 270;
 
-            if (yDirection > 0)//if y is also positive, we want to go up a little
+            if (yDirection > 0)//if y is also positive, we want to go right and up
             {
                 myRotation = 315;
             }
-            else if (yDirection < 0)//if y is negative, we want to go down to 315 degrees
+            else if (yDirection < 0)//if y is negative, we want to right and down
             {
                 myRotation = 225;
             }
 
 
         }
-        else if (xDirection < 0)//if x is negative, we want to go leftish, starting at 180 degrees
+        else if (xDirection < 0)//if x is negative, we want to go left
         {
             myRotation = 90;
 
@@ -129,7 +80,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 myRotation = 45;
             }
-            else if (yDirection < 0)
+            else if (yDirection < 0) //if y is negative, we want to go left and down
             {
                 myRotation = 135;
             }
@@ -137,11 +88,11 @@ public class PlayerMovement : MonoBehaviour
         }
         else //if x is 0, we want to only use the y value
         {
-            if (yDirection > 0)
+            if (yDirection > 0) //if y is positive, we want to move up
             {
                 myRotation = 0;
-            }
-            else
+            } 
+            else//if y is negative, we want to move down
             {
                 myRotation = 180;
             }
@@ -150,11 +101,12 @@ public class PlayerMovement : MonoBehaviour
 
         // Debug.Log($"Rotation should be {myRotation}");
         
-        //TODO figure out how to set the rotation to the value I want
+        
+        //this is a temporary solution to rotate the object, ultimately what we want to do is send a 
+        //number to the animator in order to choose the correct sprite animator
         Vector3 newRotation = new Vector3(0, 0, myRotation);
         myTransform.rotation = Quaternion.Euler(newRotation);
-        //myTransform.Rotate(Vector3.zero);
-        //myTransform.Rotate(new Vector3(0,0,myRotation));
+        
     }
     
 }
