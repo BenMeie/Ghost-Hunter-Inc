@@ -8,7 +8,9 @@ public class PlayerMovement : MonoBehaviour
     private Transform myTransform;
     private Rigidbody2D myRigidbody;
     private Vector2 movement;
-    
+    private Animator movementAnimation;
+    public Sprite idle;
+
 
     public float speed = 2f;
     
@@ -17,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     {
         myTransform = GetComponent<Transform>();
         myRigidbody = GetComponent<Rigidbody2D>();
+        movementAnimation = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -30,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
         //code inspired by a Brackeys video
         moveCharacter();
         rotateCharacter(movement.normalized);
-        
+
     }
 
     //uses axis to control what direction the player is going, and then moves the character
@@ -59,42 +62,28 @@ public class PlayerMovement : MonoBehaviour
 
         if (xDirection > 0)//if x is positive, we are moving to the right
         {
-            myRotation = 270;
-
-            if (yDirection > 0)//if y is also positive, we want to go right and up
-            {
-                myRotation = 315;
-            }
-            else if (yDirection < 0)//if y is negative, we want to right and down
-            {
-                myRotation = 225;
-            }
-
+            movementAnimation.Play("Right");
 
         }
         else if (xDirection < 0)//if x is negative, we want to go left
         {
-            myRotation = 90;
-
-            if (yDirection > 0)//if y is positive, we want to go left and up
-            {
-                myRotation = 45;
-            }
-            else if (yDirection < 0) //if y is negative, we want to go left and down
-            {
-                myRotation = 135;
-            }
-
+            movementAnimation.Play("Left");
         }
         else //if x is 0, we want to only use the y value
         {
             if (yDirection > 0) //if y is positive, we want to move up
             {
-                myRotation = 0;
+                movementAnimation.Play("Up");
             } 
             else//if y is negative, we want to move down
             {
-                myRotation = 180;
+                if (yDirection < 0)
+                    movementAnimation.Play("Down");
+                else
+                {
+                    SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+                    sprite.sprite = idle;
+                }
             }
         }
         
