@@ -20,7 +20,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: fb82ec43b99bb5249b430bab9627c10b, type: 2}
+  m_Motion: {fileID: 7400000, guid: 15fd6642418de4a499361ffc5fb8cc06, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -46,7 +46,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 81e8e9dd176013f4aa191f49b4e85efa, type: 2}
+  m_Motion: {fileID: 7400000, guid: 4f399802384061e4bba98a84e6a7bf96, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -103,7 +103,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: c93656e44e2ba2c4cb1b88dbb54ac3ea, type: 2}
+  m_Motion: {fileID: 7400000, guid: 80cd25a7c3e761643a9a61a2f3f7770d, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -115,7 +115,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: CharacterController
+  m_Name: AbigaelleController
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers:
@@ -151,7 +151,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 3dd0572ac1281c74686b8a82ac7d0c7a, type: 2}
+  m_Motion: {fileID: 7400000, guid: 1f17e1061fc19524ba21184b92c67483, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
