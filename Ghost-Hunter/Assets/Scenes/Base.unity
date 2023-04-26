@@ -5006,7 +5006,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 3
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -5030,7 +5030,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 387911572}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -41.33, y: 7.48, z: -10.2}
+  m_LocalPosition: {x: -42.1, y: 4.11, z: -10.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5251,8 +5251,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9ac65ed9e9614b128dc24815692cd87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  idle: {fileID: 1649663983, guid: f58476e4f913de44887355297700fc28, type: 3}
+  cameraTransform: {fileID: 387911575}
   speed: 2
+  idle_down: {fileID: 1649663983, guid: f58476e4f913de44887355297700fc28, type: 3}
+  idle_up: {fileID: -1241027934, guid: f58476e4f913de44887355297700fc28, type: 3}
+  idle_left: {fileID: 1361822256, guid: f58476e4f913de44887355297700fc28, type: 3}
+  idle_right: {fileID: 1239257737, guid: f58476e4f913de44887355297700fc28, type: 3}
 --- !u!61 &514035967
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5339,7 +5343,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 1649663983, guid: f58476e4f913de44887355297700fc28, type: 3}
+  m_Sprite: {fileID: 1946254572, guid: f58476e4f913de44887355297700fc28, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
