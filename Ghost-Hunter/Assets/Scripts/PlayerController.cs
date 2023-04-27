@@ -1,61 +1,71 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    //movement code is from a Brackeys video
-    public float moveSpeed = 5f;
+    public float mementoCheckingDistance = 1f;
+    public GameObject[] mementos;
 
-    public Rigidbody2D rb;
-    public Camera cam;
-    Vector2 movement;
-    Vector2 mousePos;
+    public delegate void MementoFound(int id);
 
-    //might want to eventually have flashlight in seperate controller
-    public GameObject flashlight;
-    private bool flashlightOn = true;
-    private float battery = 100f;
-    public float depleteRate = 1f;
-    public float rechargeRate = 5f;
+    public static event MementoFound onMementoFound;
+    
+    
+    // Start is called before the first frame update
+    void Start()
+    {
+        //gets all the mementos
+        findRemainingMementos();
+    }
 
     // Update is called once per frame
     void Update()
     {
-        movement.x = Input.GetAxisRaw("Horizontal");
-        movement.y = Input.GetAxisRaw("Vertical");
-
-        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-
-        if(Input.GetMouseButtonDown(0)){
-            ToggleFlashlight();
+        //if the user presses "E", we will check if there's any nearby mementos.
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            findRemainingMementos();//reset the mementos
+            Debug.Log("Pressed E");
+            checkForMemento();
         }
     }
 
-    private void FixedUpdate()
-    {   
-        //movement
-        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
-
-        Vector2 lookDir = mousePos - rb.position;
-        float angle = Mathf.Atan2(lookDir.y ,lookDir.x) * Mathf.Rad2Deg - 90f;
-        rb.rotation = angle;
-
-        if (battery <= 0){
-            ToggleFlashlight();
+    
+    //this method will check if there's a memento nearby. If there is, it will send out an event
+    //containing the id of the memento that was found
+    bool checkForMemento()
+    {
+        
+        Debug.Log($"There are currently {mementos.Length} mementos left");
+        
+        foreach (GameObject memento in mementos)
+        {
+            int mementoId;
+            
+            if (Vector2.Distance(transform.position, memento.transform.position) <=
+                mementoCheckingDistance) //here we have to give a condition for if memento is close to the player
+            {
+                mementoId = memento.GetComponent<MementoController>().id;
+                Debug.Log($"Interacted with memento number {mementoId}");
+                
+                //send out the event
+                if (onMementoFound != null)
+                {
+                    onMementoFound(mementoId);
+                }
+                
+                return true;
+            }
         }
+        
 
-        //can change to make recharging take a bit after or something
-        if(flashlightOn){
-            battery -= 1f;
-        } else {
-            battery += 5f;
-        }
+        return false;
     }
 
-    void ToggleFlashlight(){
-        Debug.Log("Toggling FLashlight");
-        flashlightOn = !flashlightOn;
-        flashlight.SetActive(flashlightOn);
+    void findRemainingMementos()
+    {
+        mementos = GameObject.FindGameObjectsWithTag("Memento");
     }
 }
