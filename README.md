@@ -86,7 +86,18 @@ README.md
 
 Sprites
 * [Ghost : Penzilla - Hooded Protagonist](https://penzilla.itch.io/hooded-protagonist)
-* [PIPOYA character 32x32 sprites generator](https://pipoya.itch.io/pipoya-free-rpg-character-sprites-32x32)
+* [Character : PIPOYA character 32x32 sprites generator](https://pipoya.itch.io/pipoya-free-rpg-character-sprites-32x32)
+
+Sounds
+* [Thunder : Free sounds - DragishaRambo21](https://freesound.org/people/DragishaRambo21/sounds/345920/)
+* [Main Menu Song : Uppbeat - Danijel Zambo](https://uppbeat.io/track/danijel-zambo/friendly-ghost?rt=uc-referral)
+
+Unity Assets
+* [Cursors : Pixel Cursors](https://assetstore.unity.com/packages/2d/gui/icons/pixel-cursors-109256)
+* [Font : Pixel Font - Tripfive](https://assetstore.unity.com/packages/2d/fonts/pixel-font-tripfive-64734#content)
+
+Illustrations
+* [Main Menu Background : Pixel Joint](https://pixeljoint.com/pixelart/133555.htm)
 
 <p align="right"><a href="#readme-top">:arrow_up:back to top</a></p>
 
