@@ -27,6 +27,8 @@ public class Ghost : MonoBehaviour
         UpdateDifficulty();
         StartCoroutine(UpdateTarget());
         StartCoroutine(Calm());
+
+        PlayerController.onMementoFound += FoundMemento;
     }
 
     // Update is called once per frame
@@ -54,6 +56,11 @@ public class Ghost : MonoBehaviour
         {
             sprite.flipX = false;
         }
+    }
+
+    void FoundMemento(int id)
+    {
+        IncreaseMinAnger();
     }
 
     public void IncreaseMinAnger(int by = 5)

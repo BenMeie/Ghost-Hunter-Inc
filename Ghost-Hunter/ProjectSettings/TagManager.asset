@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ghost
   - Memento
+  - Ritual
   layers:
   - Default
   - TransparentFX

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -7,6 +8,8 @@ public class PlayerController : MonoBehaviour
 {
     public float mementoCheckingDistance = 1f;
     public GameObject[] mementos;
+
+    private GameObject ritual;
 
     public delegate void MementoFound(int id);
 
@@ -18,6 +21,7 @@ public class PlayerController : MonoBehaviour
     {
         //gets all the mementos
         findRemainingMementos();
+        ritual = GameObject.FindWithTag("Ritual");
     }
 
     // Update is called once per frame
@@ -29,6 +33,7 @@ public class PlayerController : MonoBehaviour
             findRemainingMementos();//reset the mementos
             Debug.Log("Pressed E");
             checkForMemento();
+            CheckForRitual();
         }
     }
 
@@ -62,6 +67,17 @@ public class PlayerController : MonoBehaviour
         
 
         return false;
+    }
+
+    void CheckForRitual()
+    {
+        if (mementos.Length >= 3)
+        {
+            if ((transform.position - ritual.transform.position).magnitude < 4)
+            {
+                print("Game End");
+            }
+        }
     }
 
     void findRemainingMementos()
