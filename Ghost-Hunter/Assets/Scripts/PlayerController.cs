@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public GameObject[] mementos;
 
     private GameObject ritual;
+    private Ghost ghost;
 
     public delegate void MementoFound(int id);
 
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
         //gets all the mementos
         findRemainingMementos();
         ritual = GameObject.FindWithTag("Ritual");
+        ghost = GameObject.FindWithTag("Ghost").GetComponent<Ghost>();
     }
 
     // Update is called once per frame
@@ -71,11 +73,14 @@ public class PlayerController : MonoBehaviour
 
     void CheckForRitual()
     {
-        if (mementos.Length >= 3)
+        if (mementos.Length == 0)
         {
-            if ((transform.position - ritual.transform.position).magnitude < 4)
+            print("all mementos found");
+            print((transform.position - ritual.transform.position).magnitude);
+            if ((transform.position - ritual.transform.position).magnitude < 2)
             {
                 print("Game End");
+                ghost.updating = false;
             }
         }
     }

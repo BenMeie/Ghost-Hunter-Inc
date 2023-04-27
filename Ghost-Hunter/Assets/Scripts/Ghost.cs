@@ -66,6 +66,10 @@ public class Ghost : MonoBehaviour
     public void IncreaseMinAnger(int by = 5)
     {
         minAnger += 5;
+        if (angerLevel < minAnger)
+        {
+            SetAnger(minAnger);  
+        }
     }
 
     public void IncreaseAnger(int by = 1)

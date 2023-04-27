@@ -12,29 +12,36 @@ public class ScareController : MonoBehaviour
     public float distanceFromGhost;
 
     private GameObject ghost;
+    private Ghost ghostScript;
 
     private void Start()
     {
         ghost = GameObject.FindGameObjectWithTag("Ghost");
+        ghostScript = ghost.GetComponent<Ghost>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        FindDistanceFromGhost();
-        if (distanceFromGhost < deathRadius)
+        if (ghostScript.updating)
         {
-            Kill();
-        } else if (distanceFromGhost < warningRadius)
-        {
-            Warn();
-        } else if (distanceFromGhost < alertRadius)
-        {
-            Alert();
-        }
-        else
-        {
-            ClearAll();
+            FindDistanceFromGhost();
+            if (distanceFromGhost < deathRadius)
+            {
+                Kill();
+            }
+            else if (distanceFromGhost < warningRadius)
+            {
+                Warn();
+            }
+            else if (distanceFromGhost < alertRadius)
+            {
+                Alert();
+            }
+            else
+            {
+                ClearAll();
+            }
         }
     }
 
