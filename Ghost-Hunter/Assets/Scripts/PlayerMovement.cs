@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
         bool horizontalButtonPressed = Input.GetButton("Horizontal");
         bool verticalButtonPressed = Input.GetButton("Vertical");
         
-        main.transform.position = new Vector3(myTransform.position.x, myTransform.position.y, -10);
+        main.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
         //code inspired by a Brackeys video
         moveCharacter();
         rotateCharacter(movement.normalized);
