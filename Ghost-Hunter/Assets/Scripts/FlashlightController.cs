@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.UI;
 
 public class FlashlightController : MonoBehaviour
 {
@@ -12,11 +13,12 @@ public class FlashlightController : MonoBehaviour
 
     //might want to eventually have flashlight in seperate controller
     public Light2D light;
-    private bool flashlightOn = true;
-    private float battery = 100f;
     public float depleteRate = 1f;
     public float rechargeRate = 5f;
+    public Image batteryBar;
 
+    private bool flashlightOn = true;
+    private float battery = 100f;
     private Vector2 position2D;
     private Vector2 lookDir;
 
@@ -53,11 +55,13 @@ public class FlashlightController : MonoBehaviour
         }
 
         //can change to make recharging take a bit after or something
-        if(flashlightOn){
-            battery -= 1f;
-        } else {
-            battery += 5f;
+        if(flashlightOn)
+        {
+            battery -= 0.5f;
+        } else if(battery < 100) {
+            battery += 1f;
         }
+        batteryBar.fillAmount = battery/100.0f;
     }
 
     void ToggleFlashlight(){
