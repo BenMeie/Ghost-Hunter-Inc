@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MenuButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
@@ -14,6 +15,7 @@ public class MenuButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public Texture2D cursorHover;
     public CursorMode cursorMode = CursorMode.Auto;
     public Vector2 hotSpot = Vector2.zero;
+    public SceneFader fader;
 
     private void Start()
     {
@@ -31,5 +33,10 @@ public class MenuButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
         buttonText.color = new Color32(122, 109, 217, 255);
+    }
+
+    public void ClickPlay()
+    {
+        fader.FadeTo("GhostAI");
     }
 }
