@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
     private float battery = 100f;
     public float depleteRate = 1f;
     public float rechargeRate = 5f;
+    public Image batteryBar;
 
     //[Header("Mementos")]
     //public float mementoCheckingDistance = 1f;
@@ -91,10 +93,12 @@ public class PlayerController : MonoBehaviour
 
         //can change to make recharging take a bit after or something
         if(flashlightOn){
-            battery -= 1f;
-        } else {
-            battery += 5f;
+            battery -= 0.5f;
+        } else if(battery < 100) {
+            battery += 2f;
         }
+
+        batteryBar.fillAmount = battery / 100.0f;
     }
 
     void ToggleFlashlight(){
