@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
 {
     [Header("General")]
 
+    public GameManager gameManager;
+
     public Camera cam;
     Vector2 mousePos;
 
@@ -21,28 +23,20 @@ public class PlayerController : MonoBehaviour
     public float depleteRate = 1f;
     public float rechargeRate = 5f;
 
-    [Header("Mementos")]
-    public float mementoCheckingDistance = 1f;
-    public GameObject[] mementos;
+    //[Header("Mementos")]
+    //public float mementoCheckingDistance = 1f;
+    //public GameObject[] mementos;
 
     private GameObject ritual;
     private Ghost ghost;
 
     public delegate void MementoFound(int id);
 
-    public static event MementoFound onMementoFound;
-
-    Vector2 boxSize = new Vector2(1,2);
-    
+    public static event MementoFound onMementoFound;    
     
     // Start is called before the first frame update
     void Start()
     {
-        //gets all the mementos
-        //findRemainingMementos();
-        //ritual = GameObject.FindWithTag("Ritual");
-        //ghost = GameObject.FindWithTag("Ghost").GetComponent<Ghost>();
-
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
         lightPosition2D = new Vector2(light.transform.position.x, light.transform.position.y);
         lookDir = mousePos - lightPosition2D;
@@ -60,6 +54,16 @@ public class PlayerController : MonoBehaviour
             ToggleFlashlight();
         }
 
+        //checking if there's anything interactable where the player is looking
+        if (Physics.SphereCast(transform.position, 0.5f, new Vector3(lookDir.x, lookDir.y, 0), out var hitInfo, 1f))
+        {
+            if (hitInfo.collider.gameObject.CompareTag("Memento"))
+            {
+                gameManager.showInteractable(hitInfo.transform.position);
+            }
+        } else {
+            gameManager.hideInteractable();
+        }
     }
 
     private void FixedUpdate()
@@ -80,15 +84,6 @@ public class PlayerController : MonoBehaviour
             battery -= 1f;
         } else {
             battery += 5f;
-        }
-
-        //checking if there's anything interactable where the player is looking
-        if (Physics.SphereCast(transform.position, 0.5f, new Vector3(lookDir.x, lookDir.y, 0), out var hitInfo, 1f))
-        {
-            if (hitInfo.collider.gameObject.CompareTag("Memento"))
-            {
-                Debug.Log("Finding Memento");
-            }
         }
     }
 

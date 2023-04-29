@@ -12,6 +12,10 @@ public class Memento : MonoBehaviour
     [HideInInspector]
     public GameObject memento;
 
+    [HideInInspector]
+    public bool interactable = false;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,4 +37,12 @@ public class Memento : MonoBehaviour
         Destroy(foundParticles,5f);
         Destroy(gameObject);
     }
+
+    // public void showPrompt(){
+
+    // }
+
+    // public void hidePrompt(){
+
+    // }
 }

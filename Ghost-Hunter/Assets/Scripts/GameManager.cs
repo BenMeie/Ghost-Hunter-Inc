@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    //[Header("Mementos")]
+    [Header("UI")]
+    public GameObject interactPrompt;
+
+    [Header("Mementos")]
     //how many mementos to spawn
     public int mementosSpawned = 0;
 
@@ -16,6 +19,8 @@ public class GameManager : MonoBehaviour
 
     //[Header("General")]
     public GameObject ritualSpot;
+
+
 
 
     // Start is called before the first frame update
@@ -60,5 +65,14 @@ public class GameManager : MonoBehaviour
         if(mementosFound == mementosSpawned){
             //set ritual site to be active to dispell ghost
         }
+    }
+
+    public void showInteractable(Vector3 position){
+        interactPrompt.SetActive(true);
+        interactPrompt.transform.position = new Vector3(position.x, position.y + 0.5f, 0f);
+    }
+
+    public void hideInteractable(){
+        interactPrompt.SetActive(false);
     }
 }
