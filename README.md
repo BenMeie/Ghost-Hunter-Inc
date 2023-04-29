@@ -92,6 +92,7 @@ Sprites
 Sounds
 * [Thunder : Free sounds - DragishaRambo21](https://freesound.org/people/DragishaRambo21/sounds/345920/)
 * [Main Menu Song : Uppbeat - Danijel Zambo](https://uppbeat.io/track/danijel-zambo/friendly-ghost?rt=uc-referral)
+* [Game Song : Uppbeat - Brandon Hopkins](https://uppbeat.io/t/brandon-hopkins/neighborhood)
 
 Unity Assets
 * [Cursors : Pixel Cursors](https://assetstore.unity.com/packages/2d/gui/icons/pixel-cursors-109256)
