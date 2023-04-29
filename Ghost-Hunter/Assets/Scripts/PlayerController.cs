@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     private Vector2 lookDir;
 
     [Header("Flashlight")]
-    public Light2D light;
+    public Light2D flashlight;
     private bool flashlightOn = true;
     private float battery = 100f;
     public float depleteRate = 1f;
@@ -32,17 +32,17 @@ public class PlayerController : MonoBehaviour
 
     public delegate void MementoFound(int id);
 
-    public static event MementoFound onMementoFound;    
+    //public static event MementoFound onMementoFound;    
     
     // Start is called before the first frame update
     void Start()
     {
         mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        lightPosition2D = new Vector2(light.transform.position.x, light.transform.position.y);
+        lightPosition2D = new Vector2(flashlight.transform.position.x, flashlight.transform.position.y);
         lookDir = mousePos - lightPosition2D;
         lookDir.Normalize();
         
-        StartCoroutine(checkLightCollision(lookDir));
+        StartCoroutine(CheckLightCollision(lookDir));
     }
 
     // Update is called once per frame
@@ -59,10 +59,20 @@ public class PlayerController : MonoBehaviour
         {
             if (hitInfo.collider.gameObject.CompareTag("Memento"))
             {
-                gameManager.showInteractable(hitInfo.transform.position);
+                gameManager.ShowInteractable(hitInfo.transform.position);
+
+                if (Input.GetKeyDown("e"))
+                {
+                    //might not be the best way to do this
+                    Memento memento = hitInfo.collider.GetComponent<Memento>();
+                    gameManager.FindMemento(memento.id);
+                }
             }
+            
+            //can add check for ritual or other interactable objects here
+            
         } else {
-            gameManager.hideInteractable();
+            gameManager.HideInteractable();
         }
     }
 
@@ -73,7 +83,7 @@ public class PlayerController : MonoBehaviour
         lookDir = mousePos - lightPosition2D;
         lookDir.Normalize();
         float angle = Mathf.Atan2(lookDir.y ,lookDir.x) * Mathf.Rad2Deg - 90f;
-        light.transform.rotation = Quaternion.Euler(0, 0, angle);
+        flashlight.transform.rotation = Quaternion.Euler(0, 0, angle);
 
         if (battery <= 0){
             ToggleFlashlight();
@@ -89,12 +99,12 @@ public class PlayerController : MonoBehaviour
 
     void ToggleFlashlight(){
         flashlightOn = !flashlightOn;
-        light.enabled = flashlightOn;
-        StopCoroutine(checkLightCollision(lookDir));
-        StartCoroutine(checkLightCollision(lookDir));
+        flashlight.enabled = flashlightOn;
+        StopCoroutine(CheckLightCollision(lookDir));
+        StartCoroutine(CheckLightCollision(lookDir));
     }
 
-    IEnumerator checkLightCollision(Vector2 lookDir)
+    IEnumerator CheckLightCollision(Vector2 lookDir)
     {
         while (flashlightOn)
         {

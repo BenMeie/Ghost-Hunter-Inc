@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("General")] 
+    public Ghost ghost;
+    public GameObject ritualSpot;
+
     [Header("UI")]
     public GameObject interactPrompt;
 
@@ -16,28 +20,17 @@ public class GameManager : MonoBehaviour
 
     //how many have been found
     private int mementosFound = 0;
-
-    //[Header("General")]
-    public GameObject ritualSpot;
-
-
-
-
+    
     // Start is called before the first frame update
     void Start()
     {
-        //grabbing all mementos
-        //mementos = GameObject.FindGameObjectsWithTag("Memento");
-
-        PlayerController.onMementoFound += findMemento;
-
         //Randomly choosing mementos to spawn
         for(int i = 0; mementosSpawned < i; i++){
             int choice = Random.Range(0, mementosSpawned);
 
             //checking if object is already active
             //want to make sure the numbers are unique
-            if(mementos[choice].gameObject.active){
+            if(mementos[choice].gameObject.activeSelf){
                 i--; //going to have to choose another
             } else {
                 mementos[choice].gameObject.SetActive(true);
@@ -48,31 +41,29 @@ public class GameManager : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    void findMemento(int mementoId){
-        mementos[mementoId].found();
+    public void FindMemento(int mementoId){
+        mementos[mementoId].Found();
         mementosFound++;
         //add to GUI here
 
-        //when ghost is added
-        //Ghost.IncreaseMinAnger();
+        ghost.IncreaseMinAnger();
 
-        if(mementosFound == mementosSpawned){
-            //set ritual site to be active to dispell ghost
+        if(mementosFound >= mementosSpawned){
+            //ritualSpot.activate(); or something
         }
     }
 
-    public void showInteractable(Vector3 position){
+    public void ShowInteractable(Vector3 position){
         interactPrompt.SetActive(true);
         interactPrompt.transform.position = new Vector3(position.x, position.y + 0.5f, 0f);
     }
 
-    public void hideInteractable(){
+    public void HideInteractable(){
         interactPrompt.SetActive(false);
+    }
+
+    public void GameOver()
+    {
+        print("player big dead");
     }
 }

@@ -199,6 +199,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e66d811a40ac4206b53e58331fcdd71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   target: {fileID: 1276566901}
   spriteObject: {fileID: 230426459}
   angerLevel: 1
@@ -121849,9 +121850,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fe89f5257959454c8b282a1eb517fe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ghost: {fileID: 0}
+  ritualSpot: {fileID: 0}
   interactPrompt: {fileID: 483861648}
   mementosSpawned: 0
-  ritualSpot: {fileID: 0}
 --- !u!4 &633319308
 Transform:
   m_ObjectHideFlags: 0
@@ -123019,6 +123021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed18686a6026b46cebd4628c863b01e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
   alertRadius: 5
   warningRadius: 3
   deathRadius: 1
@@ -123193,13 +123196,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b23957d463a84df996d35410eb670de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
+  gameManager: {fileID: 633319307}
   cam: {fileID: 1323126516}
-  light: {fileID: 491478548}
+  flashlight: {fileID: 0}
   depleteRate: 1
   rechargeRate: 5
-  mementoCheckingDistance: 1
-  mementos: []
 --- !u!1 &1323126515
 GameObject:
   m_ObjectHideFlags: 0
@@ -124253,11 +124254,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8405304192894521349, guid: 90f0c69b907fb4873a4e1171ae68d8b2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -37.91
+      value: -47.21
       objectReference: {fileID: 0}
     - target: {fileID: 8405304192894521349, guid: 90f0c69b907fb4873a4e1171ae68d8b2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.37
+      value: 4.18
       objectReference: {fileID: 0}
     - target: {fileID: 8405304192894521349, guid: 90f0c69b907fb4873a4e1171ae68d8b2, type: 3}
       propertyPath: m_LocalPosition.z
