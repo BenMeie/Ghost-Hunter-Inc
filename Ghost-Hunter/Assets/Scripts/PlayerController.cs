@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
                 {
                     //might not be the best way to do this
                     Memento memento = hitInfo.collider.GetComponent<Memento>();
-                    gameManager.FindMemento(memento.id);
+                    gameManager.FindMemento(memento);
                 }
             }
             

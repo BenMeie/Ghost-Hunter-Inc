@@ -38,14 +38,15 @@ public class GameManager : MonoBehaviour
              } else {
                  mementos[choice].gameObject.SetActive(true);
                  //setting Id of memento
-                 mementos[choice].id = i;
+                 mementos[choice].id = choice;
              }
         }
 
     }
 
-    public void FindMemento(int mementoId){
-        mementos[mementoId].Found();
+    public void FindMemento(Memento memento){
+        memento.Found();
+        print("Memento: " + memento.id);
         mementosFound++;
         //add to GUI here
 
