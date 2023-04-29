@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//[System.Serializable]
 public class Memento : MonoBehaviour
 {
     //is set when it's set to active in the
@@ -10,17 +9,10 @@ public class Memento : MonoBehaviour
     public int id; //each memento will have its own integer
     public GameObject particles;
 
-    [HideInInspector]
-    public GameObject memento;
-
-    [HideInInspector]
-    public bool interactable = false;
-
-
     // Start is called before the first frame update
     void Start()
     {
-        memento = gameObject;
+        
     }
 
     // Update is called once per frame

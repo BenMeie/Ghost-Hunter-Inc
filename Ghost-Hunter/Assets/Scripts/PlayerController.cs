@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {   
         //finding light direction facing
-        lightPosition2D = new Vector2(transform.position.x, transform.position.y);
+        lightPosition2D = new Vector2(flashlight.transform.position.x, flashlight.transform.position.y);
         lookDir = mousePos - lightPosition2D;
         lookDir.Normalize();
         float angle = Mathf.Atan2(lookDir.y ,lookDir.x) * Mathf.Rad2Deg - 90f;
@@ -127,55 +127,4 @@ public class PlayerController : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawSphere(transform.position + new Vector3(lookDir.x, lookDir.y, 0) * 3.5f, 0.5f);
     }
-
-    
-    //this method will check if there's a memento nearby. If there is, it will send out an event
-    //containing the id of the memento that was found
-    // bool checkForMemento()
-    // {
-        
-    //     Debug.Log($"There are currently {mementos.Length} mementos left");
-        
-    //     foreach (GameObject memento in mementos)
-    //     {
-    //         int mementoId;
-            
-    //         if (Vector2.Distance(transform.position, memento.transform.position) <=
-    //             mementoCheckingDistance) //here we have to give a condition for if memento is close to the player
-    //         {
-    //             mementoId = memento.GetComponent<MementoController>().id;
-    //             Debug.Log($"Interacted with memento number {mementoId}");
-                
-    //             //send out the event
-    //             if (onMementoFound != null)
-    //             {
-    //                 onMementoFound(mementoId);
-    //             }
-                
-    //             return true;
-    //         }
-    //     }
-        
-
-    //     return false;
-    // }
-
-    // void CheckForRitual()
-    // {
-    //     if (mementos.Length == 0)
-    //     {
-    //         print("all mementos found");
-    //         print((transform.position - ritual.transform.position).magnitude);
-    //         if ((transform.position - ritual.transform.position).magnitude < 2)
-    //         {
-    //             print("Game End");
-    //             ghost.updating = false;
-    //         }
-    //     }
-    // }
-
-    // void findRemainingMementos()
-    // {
-    //     mementos = GameObject.FindGameObjectsWithTag("Memento");
-    // }
 }

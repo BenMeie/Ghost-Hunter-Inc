@@ -7,7 +7,8 @@ public class GameManager : MonoBehaviour
     [Header("General")] 
     public Ghost ghost;
     public GameObject ritualSpot;
-
+    public SceneFader fader;
+    
     [Header("UI")]
     public GameObject interactPrompt;
 
@@ -16,7 +17,7 @@ public class GameManager : MonoBehaviour
     public int mementosSpawned = 0;
 
     //all mementos
-    private Memento[] mementos;
+    public Memento[] mementos;
 
     //how many have been found
     private int mementosFound = 0;
@@ -25,18 +26,20 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         //Randomly choosing mementos to spawn
-        for(int i = 0; mementosSpawned < i; i++){
+        //will break Unity if all mementos aren't disabled
+        for(int i = 0; mementosSpawned > i; i++)
+        {
             int choice = Random.Range(0, mementosSpawned);
-
+            
             //checking if object is already active
             //want to make sure the numbers are unique
-            if(mementos[choice].gameObject.activeSelf){
-                i--; //going to have to choose another
-            } else {
-                mementos[choice].gameObject.SetActive(true);
-                //setting Id of memento
-                mementos[choice].id = i;
-            }
+             if(mementos[choice].gameObject.activeSelf){
+                 i--; //going to have to choose another
+             } else {
+                 mementos[choice].gameObject.SetActive(true);
+                 //setting Id of memento
+                 mementos[choice].id = i;
+             }
         }
 
     }
@@ -53,6 +56,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void RitualStarted()
+    {
+        print("Ritual Started");
+    }
+
     public void ShowInteractable(Vector3 position){
         interactPrompt.SetActive(true);
         interactPrompt.transform.position = new Vector3(position.x, position.y + 0.5f, 0f);
@@ -65,5 +73,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         print("player big dead");
+        //Disabled for easier testing
+        //fader.FadeTo("MainMenu");
     }
 }
