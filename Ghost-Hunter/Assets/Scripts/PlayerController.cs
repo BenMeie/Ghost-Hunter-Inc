@@ -1,11 +1,27 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("General")]
+
+    public Camera cam;
+    Vector2 mousePos;
+
+    private Vector2 lightPosition2D;
+    private Vector2 lookDir;
+
+    [Header("Flashlight")]
+    public Light2D light;
+    private bool flashlightOn = true;
+    private float battery = 100f;
+    public float depleteRate = 1f;
+    public float rechargeRate = 5f;
+
+    [Header("Mementos")]
     public float mementoCheckingDistance = 1f;
     public GameObject[] mementos;
 
@@ -15,78 +31,146 @@ public class PlayerController : MonoBehaviour
     public delegate void MementoFound(int id);
 
     public static event MementoFound onMementoFound;
+
+    Vector2 boxSize = new Vector2(1,2);
     
     
     // Start is called before the first frame update
     void Start()
     {
         //gets all the mementos
-        findRemainingMementos();
-        ritual = GameObject.FindWithTag("Ritual");
-        ghost = GameObject.FindWithTag("Ghost").GetComponent<Ghost>();
+        //findRemainingMementos();
+        //ritual = GameObject.FindWithTag("Ritual");
+        //ghost = GameObject.FindWithTag("Ghost").GetComponent<Ghost>();
+
+        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        lightPosition2D = new Vector2(light.transform.position.x, light.transform.position.y);
+        lookDir = mousePos - lightPosition2D;
+        lookDir.Normalize();
+        
+        StartCoroutine(checkLightCollision(lookDir));
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if the user presses "E", we will check if there's any nearby mementos.
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            findRemainingMementos();//reset the mementos
-            Debug.Log("Pressed E");
-            checkForMemento();
-            CheckForRitual();
+        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+
+        if(Input.GetMouseButtonDown(0)){
+            ToggleFlashlight();
         }
+
+    }
+
+    private void FixedUpdate()
+    {   
+        //finding light direction facing
+        lightPosition2D = new Vector2(transform.position.x, transform.position.y);
+        lookDir = mousePos - lightPosition2D;
+        lookDir.Normalize();
+        float angle = Mathf.Atan2(lookDir.y ,lookDir.x) * Mathf.Rad2Deg - 90f;
+        light.transform.rotation = Quaternion.Euler(0, 0, angle);
+
+        if (battery <= 0){
+            ToggleFlashlight();
+        }
+
+        //can change to make recharging take a bit after or something
+        if(flashlightOn){
+            battery -= 1f;
+        } else {
+            battery += 5f;
+        }
+
+        //checking if there's anything interactable where the player is looking
+        if (Physics.SphereCast(transform.position, 0.5f, new Vector3(lookDir.x, lookDir.y, 0), out var hitInfo, 1f))
+        {
+            if (hitInfo.collider.gameObject.CompareTag("Memento"))
+            {
+                Debug.Log("Finding Memento");
+            }
+        }
+    }
+
+    void ToggleFlashlight(){
+        flashlightOn = !flashlightOn;
+        light.enabled = flashlightOn;
+        StopCoroutine(checkLightCollision(lookDir));
+        StartCoroutine(checkLightCollision(lookDir));
+    }
+
+    IEnumerator checkLightCollision(Vector2 lookDir)
+    {
+        while (flashlightOn)
+        {
+            if (Physics.SphereCast(transform.position, 0.5f, new Vector3(lookDir.x, lookDir.y, 0), out var hitInfo, 3.5f))
+            {
+                if (hitInfo.collider.gameObject.CompareTag("Ghost"))
+                {
+                    print("Found Ghost");
+                    hitInfo.collider.gameObject.BroadcastMessage("IncreaseAnger", 1);
+                }
+            }
+
+            yield return new WaitForSeconds(0.2f);
+        }
+    }
+
+    void OnDrawGizmos(){
+        //Gizmos.DrawWireCube(transform.position, boxSize);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position + new Vector3(lookDir.x, lookDir.y, 0) * 3.5f, 0.5f);
     }
 
     
     //this method will check if there's a memento nearby. If there is, it will send out an event
     //containing the id of the memento that was found
-    bool checkForMemento()
-    {
+    // bool checkForMemento()
+    // {
         
-        Debug.Log($"There are currently {mementos.Length} mementos left");
+    //     Debug.Log($"There are currently {mementos.Length} mementos left");
         
-        foreach (GameObject memento in mementos)
-        {
-            int mementoId;
+    //     foreach (GameObject memento in mementos)
+    //     {
+    //         int mementoId;
             
-            if (Vector2.Distance(transform.position, memento.transform.position) <=
-                mementoCheckingDistance) //here we have to give a condition for if memento is close to the player
-            {
-                mementoId = memento.GetComponent<MementoController>().id;
-                Debug.Log($"Interacted with memento number {mementoId}");
+    //         if (Vector2.Distance(transform.position, memento.transform.position) <=
+    //             mementoCheckingDistance) //here we have to give a condition for if memento is close to the player
+    //         {
+    //             mementoId = memento.GetComponent<MementoController>().id;
+    //             Debug.Log($"Interacted with memento number {mementoId}");
                 
-                //send out the event
-                if (onMementoFound != null)
-                {
-                    onMementoFound(mementoId);
-                }
+    //             //send out the event
+    //             if (onMementoFound != null)
+    //             {
+    //                 onMementoFound(mementoId);
+    //             }
                 
-                return true;
-            }
-        }
+    //             return true;
+    //         }
+    //     }
         
 
-        return false;
-    }
+    //     return false;
+    // }
 
-    void CheckForRitual()
-    {
-        if (mementos.Length == 0)
-        {
-            print("all mementos found");
-            print((transform.position - ritual.transform.position).magnitude);
-            if ((transform.position - ritual.transform.position).magnitude < 2)
-            {
-                print("Game End");
-                ghost.updating = false;
-            }
-        }
-    }
+    // void CheckForRitual()
+    // {
+    //     if (mementos.Length == 0)
+    //     {
+    //         print("all mementos found");
+    //         print((transform.position - ritual.transform.position).magnitude);
+    //         if ((transform.position - ritual.transform.position).magnitude < 2)
+    //         {
+    //             print("Game End");
+    //             ghost.updating = false;
+    //         }
+    //     }
+    // }
 
-    void findRemainingMementos()
-    {
-        mementos = GameObject.FindGameObjectsWithTag("Memento");
-    }
+    // void findRemainingMementos()
+    // {
+    //     mementos = GameObject.FindGameObjectsWithTag("Memento");
+    // }
 }
