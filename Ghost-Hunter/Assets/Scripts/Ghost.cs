@@ -14,9 +14,13 @@ public class Ghost : MonoBehaviour
     public int minAnger = 1;
     public bool updating = true;
 
+    public AudioClip[] ambientSounds;
+    public AudioClip[] angerSounds;
+
     private NavMeshAgent agent;
     private Animator animController;
     private SpriteRenderer sprite;
+    private AudioSource audioSource;
     
     // Start is called before the first frame update
     void Start()
@@ -25,10 +29,12 @@ public class Ghost : MonoBehaviour
         agent.SetDestination(target.position);
         animController = spriteObject.GetComponent<Animator>();
         sprite = spriteObject.GetComponent<SpriteRenderer>();
-        
+        audioSource = GetComponent<AudioSource>();
+            
         UpdateDifficulty();
         StartCoroutine(UpdateTarget());
         StartCoroutine(Calm());
+        StartCoroutine(playSound());
     }
 
     // Update is called once per frame
@@ -113,7 +119,7 @@ public class Ghost : MonoBehaviour
             case <20 :
                 agent.acceleration = 2.4f;
                 agent.speed = 1.8f;
-                agent.stoppingDistance = 0;
+                agent.stoppingDistance = 1;
                 break;
             case <25 :
                 agent.acceleration = 2.5f;
@@ -149,6 +155,26 @@ public class Ghost : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
             DecreaseAnger();
+        }
+    }
+
+    IEnumerator playSound()
+    {
+        while (updating)
+        {
+            yield return new WaitForSeconds(Random.Range(20, 50f));
+            if (angerLevel > 15)
+            {
+                audioSource.clip = angerSounds[Random.Range(0, angerSounds.Length)];
+                audioSource.pitch = Random.Range(0.8f, 1.2f);
+                audioSource.Play();
+            }
+            else
+            {
+                audioSource.clip = ambientSounds[Random.Range(0, ambientSounds.Length)];
+                audioSource.pitch = Random.Range(0.8f, 1.2f);
+                audioSource.Play();
+            }
         }
     }
 }
