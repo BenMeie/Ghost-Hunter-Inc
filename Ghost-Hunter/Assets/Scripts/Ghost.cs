@@ -6,6 +6,8 @@ using UnityEngine.Serialization;
 
 public class Ghost : MonoBehaviour
 {
+    public GameManager gameManager;
+
     public Transform target;
     [FormerlySerializedAs("ghostSprite")] public GameObject spriteObject;
     public int angerLevel = 1;
@@ -27,8 +29,6 @@ public class Ghost : MonoBehaviour
         UpdateDifficulty();
         StartCoroutine(UpdateTarget());
         StartCoroutine(Calm());
-
-        PlayerController.onMementoFound += FoundMemento;
     }
 
     // Update is called once per frame
