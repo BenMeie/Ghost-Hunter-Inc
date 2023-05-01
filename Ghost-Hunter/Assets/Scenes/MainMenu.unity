@@ -440,10 +440,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Credits text
       objectReference: {fileID: 0}
-    - target: {fileID: 1293603593108180, guid: 92d60a2e17d9a4bb8bd3801b14fc2926, type: 3}
-      propertyPath: m_Layer
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 4915952705314410, guid: 92d60a2e17d9a4bb8bd3801b14fc2926, type: 3}
       propertyPath: m_RootOrder
       value: -1
@@ -1160,9 +1156,6 @@ MonoBehaviour:
   button: {fileID: 382343609}
   cursorTexture: {fileID: 2800000, guid: a85bb54b0333bf341a724b288507773d, type: 3}
   cursorHover: {fileID: 2800000, guid: 7cb58c8e38e9429459f5e51df164b471, type: 3}
-  cursorMode: 0
-  hotSpot: {x: 0, y: 0}
-  fader: {fileID: 0}
 --- !u!1 &1080356418
 GameObject:
   m_ObjectHideFlags: 0
@@ -1488,10 +1481,6 @@ PrefabInstance:
     - target: {fileID: 1293603593108180, guid: 92d60a2e17d9a4bb8bd3801b14fc2926, type: 3}
       propertyPath: m_Name
       value: Play text
-      objectReference: {fileID: 0}
-    - target: {fileID: 1293603593108180, guid: 92d60a2e17d9a4bb8bd3801b14fc2926, type: 3}
-      propertyPath: m_Layer
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4915952705314410, guid: 92d60a2e17d9a4bb8bd3801b14fc2926, type: 3}
       propertyPath: m_RootOrder
@@ -1820,10 +1809,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
-
-  cursorMode: 0
-  hotSpot: {x: 0, y: 0}
-  fader: {fileID: 0}
 --- !u!1 &1362739578
 GameObject:
   m_ObjectHideFlags: 0
@@ -1926,8 +1911,8 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: -1547085375
-  m_SortingOrder: 2
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!1001 &1381946865
 PrefabInstance:
@@ -2597,10 +2582,6 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
-      - m_Target: {fileID: 1401076468}
-        m_TargetAssemblyTypeName: MenuButtons, Assembly-CSharp
-        m_MethodName: ClickPlay
-        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2609,7 +2590,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1401076466
+--- !u!114 &1449795820
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2662,9 +2643,6 @@ MonoBehaviour:
   button: {fileID: 566979998}
   cursorTexture: {fileID: 2800000, guid: a85bb54b0333bf341a724b288507773d, type: 3}
   cursorHover: {fileID: 2800000, guid: 7cb58c8e38e9429459f5e51df164b471, type: 3}
-  cursorMode: 0
-  hotSpot: {x: 0, y: 0}
-  fader: {fileID: 1841039621}
 --- !u!1 &1516825918
 GameObject:
   m_ObjectHideFlags: 0
@@ -2969,8 +2947,8 @@ PrefabInstance:
       value: Title
       objectReference: {fileID: 0}
     - target: {fileID: 1293603593108180, guid: 92d60a2e17d9a4bb8bd3801b14fc2926, type: 3}
-      propertyPath: m_Layer
-      value: 5
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4915952705314410, guid: 92d60a2e17d9a4bb8bd3801b14fc2926, type: 3}
       propertyPath: m_RootOrder
@@ -3329,8 +3307,7 @@ GameObject:
   - component: {fileID: 1968197206}
   - component: {fileID: 1968197210}
   - component: {fileID: 1968197209}
-  - component: {fileID: 1968197211}
-  m_Layer: 7
+  m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3535,28 +3512,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4915952705314410, guid: 92d60a2e17d9a4bb8bd3801b14fc2926, type: 3}
   m_PrefabInstance: {fileID: 67629203}
   m_PrefabAsset: {fileID: 0}
---- !u!223 &1968197211
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1968197204}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 2
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 1
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
-  m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: -1
-  m_TargetDisplay: 0
 --- !u!1001 &2061598913
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3568,10 +3523,6 @@ PrefabInstance:
     - target: {fileID: 1293603593108180, guid: 92d60a2e17d9a4bb8bd3801b14fc2926, type: 3}
       propertyPath: m_Name
       value: Quit text
-      objectReference: {fileID: 0}
-    - target: {fileID: 1293603593108180, guid: 92d60a2e17d9a4bb8bd3801b14fc2926, type: 3}
-      propertyPath: m_Layer
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4915952705314410, guid: 92d60a2e17d9a4bb8bd3801b14fc2926, type: 3}
       propertyPath: m_RootOrder

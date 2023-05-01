@@ -11,10 +11,4 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Base.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
-    path: Assets/Scenes/GhostAI.unity
-    guid: 3654b2378e76b4769a317cb17e1b147a
-  - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: f570d05ef766b0546891b22a56b54add
   m_configObjects: {}

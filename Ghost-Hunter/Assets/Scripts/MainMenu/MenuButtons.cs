@@ -14,8 +14,7 @@ public class MenuButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public Texture2D cursorTexture;
     public Texture2D cursorHover;
     private CursorMode cursorMode = CursorMode.Auto;
-    public Vector2 hotSpot = Vector2.zero;
-    public SceneFader fader;
+    private Vector2 hotSpot = Vector2.zero;
 
     private void Start()
     {
@@ -35,7 +34,6 @@ public class MenuButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         buttonText.color = new Color32(122, 109, 217, 255);
     }
 
-
     public void PlayButton()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -50,9 +48,5 @@ public class MenuButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         Debug.Log("Quitting...");
         Application.Quit();
-
-    public void ClickPlay()
-    {
-        fader.FadeTo("GhostAI");
     }
 }
