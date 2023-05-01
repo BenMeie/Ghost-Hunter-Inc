@@ -1,134 +1,71 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
-using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("General")]
-
-    public GameManager gameManager;
-
-    public Camera cam;
-    Vector2 mousePos;
-
-    private Vector2 lightPosition2D;
-    private Vector2 lookDir;
-
-    [Header("Flashlight")]
-    public Light2D flashlight;
-    private bool flashlightOn = true;
-    private float battery = 100f;
-    public float depleteRate = 1f;
-    public float rechargeRate = 5f;
-    public Image batteryBar;
-
-    //[Header("Mementos")]
-    //public float mementoCheckingDistance = 1f;
-    //public GameObject[] mementos;
-
-    private GameObject ritual;
-    private Ghost ghost;
+    public float mementoCheckingDistance = 1f;
+    public GameObject[] mementos;
 
     public delegate void MementoFound(int id);
 
-    //public static event MementoFound onMementoFound;    
+    public static event MementoFound onMementoFound;
+    
     
     // Start is called before the first frame update
     void Start()
     {
-        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        lightPosition2D = new Vector2(flashlight.transform.position.x, flashlight.transform.position.y);
-        lookDir = mousePos - lightPosition2D;
-        lookDir.Normalize();
-        
-        StartCoroutine(CheckLightCollision(lookDir));
+        //gets all the mementos
+        findRemainingMementos();
     }
 
     // Update is called once per frame
     void Update()
     {
-        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-
-        if(Input.GetMouseButtonDown(0)){
-            ToggleFlashlight();
-        }
-
-        //checking if there's anything interactable where the player is looking
-        if (Physics.SphereCast(transform.position, 0.5f, new Vector3(lookDir.x, lookDir.y, 0), out var hitInfo, 1f))
+        //if the user presses "E", we will check if there's any nearby mementos.
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            if (hitInfo.collider.gameObject.CompareTag("Memento"))
-            {
-                gameManager.ShowInteractable(hitInfo.transform.position);
-
-                if (Input.GetKeyDown("e"))
-                {
-                    //might not be the best way to do this
-                    Memento memento = hitInfo.collider.GetComponent<Memento>();
-                    gameManager.FindMemento(memento);
-                }
-            }
-            
-            //can add check for ritual or other interactable objects here
-            
-        } else {
-            gameManager.HideInteractable();
+            findRemainingMementos();//reset the mementos
+            Debug.Log("Pressed E");
+            checkForMemento();
         }
     }
 
-    private void FixedUpdate()
-    {   
-        //finding light direction facing
-        lightPosition2D = new Vector2(flashlight.transform.position.x, flashlight.transform.position.y);
-        lookDir = mousePos - lightPosition2D;
-        lookDir.Normalize();
-        float angle = Mathf.Atan2(lookDir.y ,lookDir.x) * Mathf.Rad2Deg - 90f;
-        flashlight.transform.rotation = Quaternion.Euler(0, 0, angle);
-
-        if (battery <= 0){
-            ToggleFlashlight();
-        }
-
-        //can change to make recharging take a bit after or something
-        if(flashlightOn){
-            battery -= 0.5f;
-        } else if(battery < 100) {
-            battery += 2f;
-        }
-
-        batteryBar.fillAmount = battery / 100.0f;
-    }
-
-    void ToggleFlashlight(){
-        flashlightOn = !flashlightOn;
-        flashlight.enabled = flashlightOn;
-        StopCoroutine(CheckLightCollision(lookDir));
-        StartCoroutine(CheckLightCollision(lookDir));
-    }
-
-    IEnumerator CheckLightCollision(Vector2 lookDir)
+    
+    //this method will check if there's a memento nearby. If there is, it will send out an event
+    //containing the id of the memento that was found
+    bool checkForMemento()
     {
-        while (flashlightOn)
+        
+        Debug.Log($"There are currently {mementos.Length} mementos left");
+        
+        foreach (GameObject memento in mementos)
         {
-            if (Physics.SphereCast(transform.position, 0.5f, new Vector3(lookDir.x, lookDir.y, 0), out var hitInfo, 3.5f))
+            int mementoId;
+            
+            if (Vector2.Distance(transform.position, memento.transform.position) <=
+                mementoCheckingDistance) //here we have to give a condition for if memento is close to the player
             {
-                if (hitInfo.collider.gameObject.CompareTag("Ghost"))
+                mementoId = memento.GetComponent<MementoController>().id;
+                Debug.Log($"Interacted with memento number {mementoId}");
+                
+                //send out the event
+                if (onMementoFound != null)
                 {
-                    print("Found Ghost");
-                    hitInfo.collider.gameObject.BroadcastMessage("IncreaseAnger", 1);
+                    onMementoFound(mementoId);
                 }
+                
+                return true;
             }
-
-            yield return new WaitForSeconds(0.2f);
         }
+        
+
+        return false;
     }
 
-    void OnDrawGizmos(){
-        //Gizmos.DrawWireCube(transform.position, boxSize);
-
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(transform.position + new Vector3(lookDir.x, lookDir.y, 0) * 3.5f, 0.5f);
+    void findRemainingMementos()
+    {
+        mementos = GameObject.FindGameObjectsWithTag("Memento");
     }
 }
