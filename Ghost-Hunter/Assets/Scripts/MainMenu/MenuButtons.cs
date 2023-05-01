@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MenuButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
@@ -12,8 +13,8 @@ public class MenuButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     private TextMesh buttonText;
     public Texture2D cursorTexture;
     public Texture2D cursorHover;
-    public CursorMode cursorMode = CursorMode.Auto;
-    public Vector2 hotSpot = Vector2.zero;
+    private CursorMode cursorMode = CursorMode.Auto;
+    private Vector2 hotSpot = Vector2.zero;
 
     private void Start()
     {
@@ -31,5 +32,21 @@ public class MenuButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     {
         Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
         buttonText.color = new Color32(122, 109, 217, 255);
+    }
+
+    public void PlayButton()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void CreditsButton()
+    {
+        Debug.Log("TODO: credits scene");
+    }
+
+    public void QuitButton()
+    {
+        Debug.Log("Quitting...");
+        Application.Quit();
     }
 }
