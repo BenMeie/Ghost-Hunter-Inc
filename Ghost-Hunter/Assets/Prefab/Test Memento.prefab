@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8405304192894521349}
   - component: {fileID: 8405304192894521354}
-  - component: {fileID: 8405304192894521355}
-  - component: {fileID: 8405304192894521348}
+  - component: {fileID: 1828247856440382794}
+  - component: {fileID: 5041706399458558424}
   m_Layer: 0
-  m_Name: Test memento (id 0)
+  m_Name: Test Memento
   m_TagString: Memento
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8405304192894521354
 SpriteRenderer:
@@ -86,15 +86,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &8405304192894521355
-CircleCollider2D:
+--- !u!135 &1828247856440382794
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8405304192894521352}
-  m_Enabled: 1
-  m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -103,25 +101,13 @@ CircleCollider2D:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
   m_Radius: 0.5
---- !u!114 &8405304192894521348
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5041706399458558424
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -130,8 +116,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8405304192894521352}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e224354a423246818a6d71c48c37edd, type: 3}
+  m_Script: {fileID: 11500000, guid: 24b39acab2572db4dbefa7a25d253a7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   id: 0
   particles: {fileID: 469117401123075138, guid: 782bb701337eb440daec298227e48e17, type: 3}
+  memento: {fileID: 0}

@@ -13,8 +13,9 @@ public class MenuButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     private TextMesh buttonText;
     public Texture2D cursorTexture;
     public Texture2D cursorHover;
-    private CursorMode cursorMode = CursorMode.Auto;
-    private Vector2 hotSpot = Vector2.zero;
+    public CursorMode cursorMode = CursorMode.Auto;
+    public Vector2 hotSpot = Vector2.zero;
+    public SceneFader fader;
 
     private void Start()
     {
@@ -34,19 +35,8 @@ public class MenuButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         buttonText.color = new Color32(122, 109, 217, 255);
     }
 
-    public void PlayButton()
+    public void ClickPlay()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
-
-    public void CreditsButton()
-    {
-        Debug.Log("TODO: credits scene");
-    }
-
-    public void QuitButton()
-    {
-        Debug.Log("Quitting...");
-        Application.Quit();
+        fader.FadeTo("GhostAI");
     }
 }

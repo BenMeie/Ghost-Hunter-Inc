@@ -6,9 +6,11 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public Transform cameraTransform;
     private Rigidbody2D myRigidbody;
     private Vector2 movement;
+    private Camera main;
+    
+
     public float speed = 2f;
     
     //Animations
@@ -25,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
+        main = Camera.main;
         movementAnimation = GetComponent<Animator>();
         spriteObject = GetComponent<SpriteRenderer>();
         directions = new []{true, false, false, false};
@@ -33,6 +36,10 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        bool horizontalButtonPressed = Input.GetButton("Horizontal");
+        bool verticalButtonPressed = Input.GetButton("Vertical");
+        
+        main.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
         //code inspired by a Brackeys video
         moveCharacter();
         rotateCharacter(movement.normalized);
@@ -65,7 +72,6 @@ public class PlayerMovement : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
         myRigidbody.velocity = movement.normalized * speed;
-        cameraTransform.position = new Vector3(transform.position.x, transform.position.y, cameraTransform.position.z);
     }
 
     //figures out the general direction that the player is going, and rotates it to face that direction

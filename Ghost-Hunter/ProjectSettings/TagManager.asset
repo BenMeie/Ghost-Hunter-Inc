@@ -4,7 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - Ghost
   - Memento
+  - Ritual
   layers:
   - Default
   - TransparentFX
@@ -13,7 +15,7 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
+  - UIBG
   - 
   - 
   - 
@@ -41,4 +43,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Walls
+    uniqueID: 2747881921
     locked: 0
