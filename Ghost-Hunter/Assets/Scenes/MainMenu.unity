@@ -1156,9 +1156,6 @@ MonoBehaviour:
   button: {fileID: 382343609}
   cursorTexture: {fileID: 2800000, guid: a85bb54b0333bf341a724b288507773d, type: 3}
   cursorHover: {fileID: 2800000, guid: 7cb58c8e38e9429459f5e51df164b471, type: 3}
-  cursorMode: 0
-  hotSpot: {x: 0, y: 0}
-  fader: {fileID: 0}
 --- !u!1 &1080356418
 GameObject:
   m_ObjectHideFlags: 0
@@ -1708,9 +1705,6 @@ MonoBehaviour:
   button: {fileID: 2082737833}
   cursorTexture: {fileID: 2800000, guid: a85bb54b0333bf341a724b288507773d, type: 3}
   cursorHover: {fileID: 2800000, guid: 7cb58c8e38e9429459f5e51df164b471, type: 3}
-  cursorMode: 0
-  hotSpot: {x: 0, y: 0}
-  fader: {fileID: 0}
 --- !u!1 &1249335047
 GameObject:
   m_ObjectHideFlags: 0
@@ -2061,9 +2055,6 @@ MonoBehaviour:
   button: {fileID: 2006122705}
   cursorTexture: {fileID: 2800000, guid: a85bb54b0333bf341a724b288507773d, type: 3}
   cursorHover: {fileID: 2800000, guid: 7cb58c8e38e9429459f5e51df164b471, type: 3}
-  cursorMode: 0
-  hotSpot: {x: 0, y: 0}
-  fader: {fileID: 0}
 --- !u!114 &1397142162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2320,9 +2311,6 @@ MonoBehaviour:
   button: {fileID: 22209022}
   cursorTexture: {fileID: 2800000, guid: a85bb54b0333bf341a724b288507773d, type: 3}
   cursorHover: {fileID: 2800000, guid: 7cb58c8e38e9429459f5e51df164b471, type: 3}
-  cursorMode: 0
-  hotSpot: {x: 0, y: 0}
-  fader: {fileID: 0}
 --- !u!1001 &1402991675
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2655,9 +2643,6 @@ MonoBehaviour:
   button: {fileID: 566979998}
   cursorTexture: {fileID: 2800000, guid: a85bb54b0333bf341a724b288507773d, type: 3}
   cursorHover: {fileID: 2800000, guid: 7cb58c8e38e9429459f5e51df164b471, type: 3}
-  cursorMode: 0
-  hotSpot: {x: 0, y: 0}
-  fader: {fileID: 0}
 --- !u!1 &1516825918
 GameObject:
   m_ObjectHideFlags: 0
@@ -3247,7 +3232,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1841039622}
-  - component: {fileID: 1841039621}
+  - component: {fileID: 1841039623}
   m_Layer: 0
   m_Name: SceneFader
   m_TagString: Untagged
@@ -3255,7 +3240,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1841039621
+--- !u!4 &1841039622
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1841039620}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1516825919}
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1841039623
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3264,7 +3265,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1841039620}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e098ee221d89ab042aa0f85e04eb7f42, type: 3}
+  m_Script: {fileID: 11500000, guid: 806bd6fa9b17fff4a80911a0dd2990bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   img: {fileID: 605464135}
@@ -3292,22 +3293,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!4 &1841039622
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1841039620}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1516825919}
-  m_Father: {fileID: 0}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1968197204
 GameObject:
   m_ObjectHideFlags: 0
