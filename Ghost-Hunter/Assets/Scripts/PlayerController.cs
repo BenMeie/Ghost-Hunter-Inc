@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour
             uvBattery -= depleteRate * 2;
         } else if (uvBattery < 50)
         {
-            uvBattery += rechargeRate / 4.0f;
+            uvBattery += rechargeRate / 16.0f;
         }
 
         batteryBar.fillAmount = battery / 100.0f;
