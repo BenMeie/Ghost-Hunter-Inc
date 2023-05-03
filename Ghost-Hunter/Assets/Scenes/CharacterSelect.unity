@@ -1113,6 +1113,7 @@ GameObject:
   - component: {fileID: 498948164}
   - component: {fileID: 498948163}
   - component: {fileID: 498948162}
+  - component: {fileID: 498948166}
   m_Layer: 7
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1338,6 +1339,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &498948166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 498948160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a380a02d4a586649bc6688b652c8677, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &512131369
 GameObject:
   m_ObjectHideFlags: 0
@@ -1747,7 +1760,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 605614033}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 498948166}
+        m_TargetAssemblyTypeName: CharacterSelectController, Assembly-CSharp
+        m_MethodName: CharacterSelect
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Chris
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &605614033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2246,7 +2271,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 745887457}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 498948166}
+        m_TargetAssemblyTypeName: CharacterSelectController, Assembly-CSharp
+        m_MethodName: CharacterSelect
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Benjamin
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &745887457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3282,7 +3319,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 945041724}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 498948166}
+        m_TargetAssemblyTypeName: CharacterSelectController, Assembly-CSharp
+        m_MethodName: CharacterSelect
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Brielle
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &945041724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3481,7 +3530,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1036155215}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 498948166}
+        m_TargetAssemblyTypeName: CharacterSelectController, Assembly-CSharp
+        m_MethodName: CharacterSelect
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Abigaelle
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1036155215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3913,7 +3974,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1155236930}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 498948166}
+        m_TargetAssemblyTypeName: CharacterSelectController, Assembly-CSharp
+        m_MethodName: CharacterSelect
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Noel
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1155236930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4112,7 +4185,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1256972577}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 498948166}
+        m_TargetAssemblyTypeName: CharacterSelectController, Assembly-CSharp
+        m_MethodName: CharacterSelect
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Mr. Guerrero
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1256972577
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4430,7 +4515,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1380959901}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 498948166}
+        m_TargetAssemblyTypeName: CharacterSelectController, Assembly-CSharp
+        m_MethodName: CharacterSelect
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Daniel
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1380959901
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4553,7 +4650,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 2077355154}
   m_Direction: 2
   m_Value: 0.99999994
-  m_Size: 0.55881315
+  m_Size: 0.5588132
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4680,7 +4777,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1404684377}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 498948166}
+        m_TargetAssemblyTypeName: CharacterSelectController, Assembly-CSharp
+        m_MethodName: CharacterSelect
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Daisy
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1404684377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5527,7 +5636,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1939655988}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 498948166}
+        m_TargetAssemblyTypeName: CharacterSelectController, Assembly-CSharp
+        m_MethodName: CharacterSelect
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Joseph
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1939655988
 MonoBehaviour:
   m_ObjectHideFlags: 0
