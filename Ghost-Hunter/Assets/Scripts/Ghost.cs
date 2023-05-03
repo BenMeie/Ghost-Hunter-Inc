@@ -15,9 +15,13 @@ public class Ghost : MonoBehaviour
     public bool updating = true;
     public bool stunned;
 
+    public AudioClip[] ambientSounds;
+    public AudioClip[] angerSounds;
+
     private NavMeshAgent agent;
     private Animator animController;
     private SpriteRenderer sprite;
+    private AudioSource audioSource;
     
     // Start is called before the first frame update
     void Start()
@@ -26,10 +30,12 @@ public class Ghost : MonoBehaviour
         agent.SetDestination(new Vector3(target.position.x + Random.Range(-10.0f, 10.0f),target.position.y + Random.Range(-10.0f, 10.0f), target.position.z));
         animController = spriteObject.GetComponent<Animator>();
         sprite = spriteObject.GetComponent<SpriteRenderer>();
-        
+        audioSource = GetComponent<AudioSource>();
+            
         UpdateDifficulty();
         StartCoroutine(UpdateTarget());
         StartCoroutine(Calm());
+        StartCoroutine(playSound());
     }
 
     // Update is called once per frame
@@ -171,5 +177,25 @@ public class Ghost : MonoBehaviour
         yield return new WaitForSeconds(2);
         stunned = false;
         UpdateDifficulty();
+    }
+
+    IEnumerator playSound()
+    {
+        while (updating)
+        {
+            yield return new WaitForSeconds(Random.Range(20, 50f));
+            if (angerLevel > 15)
+            {
+                audioSource.clip = angerSounds[Random.Range(0, angerSounds.Length)];
+                audioSource.pitch = Random.Range(0.8f, 1.2f);
+                audioSource.Play();
+            }
+            else
+            {
+                audioSource.clip = ambientSounds[Random.Range(0, ambientSounds.Length)];
+                audioSource.pitch = Random.Range(0.8f, 1.2f);
+                audioSource.Play();
+            }
+        }
     }
 }
