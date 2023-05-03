@@ -10,12 +10,16 @@ public class PlayerController : MonoBehaviour
     [Header("General")]
 
     public GameManager gameManager;
-
     public Camera cam;
-    Vector2 mousePos;
-
-    private Vector2 lightPosition2D;
+    
+    [Header("Look Detection")]
+    public float radius = 5f;
+    [Range(1, 360)]public float angle = 15f;
+    public LayerMask targetLayer;
+    public LayerMask obstructionLayer;
     private Vector2 lookDir;
+    
+
 
     [Header("Flashlight")]
     public Light2D flashlight;
@@ -24,7 +28,9 @@ public class PlayerController : MonoBehaviour
     public float depleteRate = 1f;
     public float rechargeRate = 5f;
     public Image batteryBar;
+    Vector2 mousePos;
 
+    private Vector2 lightPosition2D;
     //[Header("Mementos")]
     //public float mementoCheckingDistance = 1f;
     //public GameObject[] mementos;
@@ -44,7 +50,7 @@ public class PlayerController : MonoBehaviour
         lookDir = mousePos - lightPosition2D;
         lookDir.Normalize();
         
-        StartCoroutine(CheckLightCollision(lookDir));
+        StartCoroutine(CheckFov(lookDir));
     }
 
     // Update is called once per frame
@@ -57,25 +63,26 @@ public class PlayerController : MonoBehaviour
         }
 
         //checking if there's anything interactable where the player is looking
-        if (Physics.SphereCast(transform.position, 0.5f, new Vector3(lookDir.x, lookDir.y, 0), out var hitInfo, 1f))
-        {
-            if (hitInfo.collider.gameObject.CompareTag("Memento"))
-            {
-                gameManager.ShowInteractable(hitInfo.transform.position);
-
-                if (Input.GetKeyDown("e"))
-                {
-                    //might not be the best way to do this
-                    Memento memento = hitInfo.collider.GetComponent<Memento>();
-                    gameManager.FindMemento(memento);
-                }
-            }
-            
-            //can add check for ritual or other interactable objects here
-            
-        } else {
-            gameManager.HideInteractable();
-        }
+        // if (Physics.SphereCast(transform.position, 0.5f, new Vector3(lookDir.x, lookDir.y, 0), out var hitInfo, 1f))
+        // {
+        //     if (hitInfo.collider.gameObject.CompareTag("Memento"))
+        //     {
+        //         gameManager.ShowInteractable(hitInfo.transform.position);
+        //
+        //         if (Input.GetKeyDown("e"))
+        //         {
+        //             //might not be the best way to do this
+        //             Memento memento = hitInfo.collider.GetComponent<Memento>();
+        //             gameManager.FindMemento(memento);
+        //         }
+        //     }
+        //     
+        //     //can add check for ritual or other interactable objects here
+        //     
+        // } else {
+        //     gameManager.HideInteractable();
+        // }
+        
     }
 
     private void FixedUpdate()
@@ -104,24 +111,39 @@ public class PlayerController : MonoBehaviour
     void ToggleFlashlight(){
         flashlightOn = !flashlightOn;
         flashlight.enabled = flashlightOn;
-        StopCoroutine(CheckLightCollision(lookDir));
-        StartCoroutine(CheckLightCollision(lookDir));
+        StopCoroutine(CheckFov(lookDir));
+        StartCoroutine(CheckFov(lookDir));
     }
 
-    IEnumerator CheckLightCollision(Vector2 lookDir)
+    IEnumerator CheckFov(Vector2 lookDir)
     {
-        while (flashlightOn)
+        while (true)
         {
-            if (Physics.SphereCast(transform.position, 0.5f, new Vector3(lookDir.x, lookDir.y, 0), out var hitInfo, 3.5f))
+            Collider2D[] rangeCheck = Physics2D.OverlapCircleAll(transform.position, radius, targetLayer);
+            // if (Physics.SphereCast(transform.position, 0.5f, new Vector3(lookDir.x, lookDir.y, 0), out var hitInfo, 3.5f))
+            // {
+            //     if (hitInfo.collider.gameObject.CompareTag("Ghost"))
+            //     {
+            //         print("Found Ghost");
+            //         hitInfo.collider.gameObject.BroadcastMessage("IncreaseAnger", 1);
+            //     }
+            // }
+            //
+            // yield return new WaitForSeconds(0.2f);
+            if (rangeCheck.Length > 0)
             {
-                if (hitInfo.collider.gameObject.CompareTag("Ghost"))
+                Transform target = rangeCheck[0].transform;
+                Vector2 dirToTarget = (target.position - transform.position);
+
+                if (Vector2.Angle(transform.up, dirToTarget) < angle / 2)
                 {
-                    print("Found Ghost");
-                    hitInfo.collider.gameObject.BroadcastMessage("IncreaseAnger", 1);
+                    float distToTarget = Vector2.Distance(target.position, transform.position);
+                    if (Physics2D.Raycast(transform.position, dirToTarget, distToTarget, obstructionLayer))
+                    {
+                        
+                    }
                 }
             }
-
-            yield return new WaitForSeconds(0.2f);
         }
     }
 
