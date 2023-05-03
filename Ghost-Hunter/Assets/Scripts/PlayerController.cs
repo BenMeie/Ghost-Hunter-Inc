@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour
             uvBattery -= depleteRate * 2;
         } else if (uvBattery < 50)
         {
-            uvBattery += rechargeRate / 2.0f;
+            uvBattery += rechargeRate / 4.0f;
         }
 
         batteryBar.fillAmount = battery / 100.0f;
@@ -125,7 +125,10 @@ public class PlayerController : MonoBehaviour
     void ToggleFlashlight(){
         if (uvOn)
         {
-            ToggleUVLight();
+            uvOn = false;
+            flashlight.color = Color.white;
+            flashlight.enabled = false;
+            StopCoroutine(CheckLightCollision(lookDir));
         }
         flashlightOn = !flashlightOn;
         flashlight.enabled = flashlightOn;
@@ -142,7 +145,7 @@ public class PlayerController : MonoBehaviour
             flashlight.enabled = false;
             StopCoroutine(CheckLightCollision(lookDir));
         }
-        else
+        else if(uvBattery > 15)
         {
             uvOn = true;
             flashlight.color = Color.magenta;

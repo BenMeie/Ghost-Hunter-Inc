@@ -98,27 +98,31 @@ public class Ghost : MonoBehaviour
         {
             case <5:
                 agent.acceleration = 2.1f;
-                agent.speed = 1.4f;
+                agent.speed = 1.5f;
                 agent.stoppingDistance = 3;
                 break;
             case <10:
                 agent.acceleration = 2.2f;
-                agent.speed = 1.6f;
+                agent.speed = 2.0f;
                 agent.stoppingDistance = 3;
                 break;
             case <15:
                 agent.acceleration = 2.3f;
-                agent.speed = 1.8f;
+                agent.speed = 2.5f;
                 agent.stoppingDistance = 2;
                 break;
             case <20 :
                 agent.acceleration = 2.4f;
-                agent.speed = 2.2f;
+                agent.speed = 3.0f;
                 agent.stoppingDistance = 0;
                 break;
             case <25 :
                 agent.acceleration = 2.5f;
-                agent.speed = 2.5f;
+                agent.speed = 3.5f;
+                break;
+            default:
+                agent.acceleration = 2.5f;
+                agent.speed = 4.0f;
                 break;
         }
         StopCoroutine(UpdateTarget());
