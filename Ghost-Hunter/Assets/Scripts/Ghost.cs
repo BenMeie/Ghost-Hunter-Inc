@@ -23,7 +23,7 @@ public class Ghost : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        agent.SetDestination(target.position);
+        agent.SetDestination(new Vector3(target.position.x + Random.Range(-10.0f, 10.0f),target.position.y + Random.Range(-10.0f, 10.0f), target.position.z));
         animController = spriteObject.GetComponent<Animator>();
         sprite = spriteObject.GetComponent<SpriteRenderer>();
         
