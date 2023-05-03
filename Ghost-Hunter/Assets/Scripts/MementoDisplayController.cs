@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 
 /*
@@ -12,6 +14,11 @@ using UnityEngine;
 public class MementoDisplayController : MonoBehaviour
 {
     private Animator animator;
+    private TextMeshProUGUI myText;
+
+    public GameObject myImage;
+
+    //public Image myImage;
 
    
 
@@ -19,7 +26,7 @@ public class MementoDisplayController : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-       
+        myText = GetComponent<TextMeshProUGUI>();
     }
 
     // Update is called once per frame
@@ -34,8 +41,10 @@ public class MementoDisplayController : MonoBehaviour
     */
     public void displayMemento(Memento memento)
     {
-        
-        //TODO, add functionality that will change the text and image based on the specific memento
+
+        myText.text = "Found " + memento.name;
+        Image display = myImage.GetComponent<Image>();
+        display.sprite = memento.mySprite;
         
         animator.SetTrigger("CollectedMemento");
     }
