@@ -73,14 +73,14 @@ public class ScareController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        var currPosition = transform.position;
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(currPosition, deathRadius);
-        
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(currPosition, warningRadius);
-        
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(currPosition, alertRadius);
+        // var currPosition = transform.position;
+        // Gizmos.color = Color.red;
+        // Gizmos.DrawWireSphere(currPosition, deathRadius);
+        //
+        // Gizmos.color = Color.yellow;
+        // Gizmos.DrawWireSphere(currPosition, warningRadius);
+        //
+        // Gizmos.color = Color.green;
+        // Gizmos.DrawWireSphere(currPosition, alertRadius);
     }
 }

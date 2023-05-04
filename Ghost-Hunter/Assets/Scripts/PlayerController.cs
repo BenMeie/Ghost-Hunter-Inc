@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -14,8 +15,10 @@ public class PlayerController : MonoBehaviour
     public Camera cam;
     
     [Header("Look Detection")]
-    public float radius = 5f;
-    [Range(1, 360)]public float angle = 15f;
+    public float flashLightRadius = 5f;
+
+    public float pickupRadius = 2f;
+    [Range(1, 360)]public float angle = 25f;
     public LayerMask targetLayer;
     public LayerMask obstructionLayer;
     private Vector2 lookDir;
@@ -24,6 +27,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Flashlight")]
     public Light2D flashlight;
+    private Transform rotatedTransform;
     private bool flashlightOn = true;
     private bool uvOn = false;
     private float battery = 100f;
@@ -41,6 +45,7 @@ public class PlayerController : MonoBehaviour
 
     private GameObject ritual;
     private Ghost ghost;
+    private Memento interactableMemento;
 
     public delegate void MementoFound(int id);
 
@@ -53,7 +58,8 @@ public class PlayerController : MonoBehaviour
         lightPosition2D = new Vector2(flashlight.transform.position.x, flashlight.transform.position.y);
         lookDir = mousePos - lightPosition2D;
         lookDir.Normalize();
-        
+        rotatedTransform =  flashlight.transform;
+
         StartCoroutine(CheckFov());
     }
 
@@ -70,28 +76,11 @@ public class PlayerController : MonoBehaviour
         {
             ToggleUVLight();
         }
-
-        //checking if there's anything interactable where the player is looking
-        // if (Physics.SphereCast(transform.position, 0.5f, new Vector3(lookDir.x, lookDir.y, 0), out var hitInfo, 1f))
-        // {
-        //     if (hitInfo.collider.gameObject.CompareTag("Memento"))
-        //     {
-        //         gameManager.ShowInteractable(hitInfo.transform.position);
-        //
-        //         if (Input.GetKeyDown("e"))
-        //         {
-        //             //might not be the best way to do this
-        //             Memento memento = hitInfo.collider.GetComponent<Memento>();
-        //             gameManager.FindMemento(memento);
-        //         }
-        //     }
-        //     
-        //     //can add check for ritual or other interactable objects here
-        //     
-        // } else {
-        //     gameManager.HideInteractable();
-        // }
-        
+        if(Input.GetKeyDown(KeyCode.E) && interactableMemento != null)
+        {
+            gameManager.FindMemento(interactableMemento);
+            interactableMemento = null;
+        }
     }
 
     private void FixedUpdate()
@@ -136,7 +125,6 @@ public class PlayerController : MonoBehaviour
             uvOn = false;
             flashlight.color = Color.white;
             flashlight.enabled = false;
-            StopCoroutine(CheckLightCollision(lookDir));
         }
         flashlightOn = !flashlightOn;
         flashlight.enabled = flashlightOn;
@@ -151,7 +139,6 @@ public class PlayerController : MonoBehaviour
             uvOn = false;
             flashlight.color = Color.white;
             flashlight.enabled = false;
-            StopCoroutine(CheckLightCollision(lookDir));
         }
         else if(uvBattery > 15)
         {
@@ -159,7 +146,7 @@ public class PlayerController : MonoBehaviour
             flashlight.color = Color.magenta;
             flashlight.enabled = true;
             flashlightOn = false;
-            StartCoroutine(CheckLightCollision(lookDir));
+            StartCoroutine(CheckFov());
         }
     }
 
@@ -167,27 +154,41 @@ public class PlayerController : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(0.5f);
-            Collider2D[] rangeCheck = Physics2D.OverlapCircleAll(transform.position, radius, targetLayer);
+            
+            yield return new WaitForSeconds(0.4f);
+            gameManager.HideInteractable();
+            interactableMemento = null;
+            Collider2D[] rangeCheck = Physics2D.OverlapCircleAll(rotatedTransform.position, flashLightRadius, targetLayer);
             foreach (var interactable in rangeCheck)
             {
-                print(interactable.gameObject.name+ "Is in view radius");
-                Vector2 dirToTarget = interactable.transform.position - transform.position;
-                // Is the target object within our view cone
-                if (!(Vector2.Angle(transform.up, dirToTarget) < angle / 2)) continue;
-                print(interactable.gameObject.name+ "Is in view cone");
-                float distanceToTarget = Vector2.Distance(interactable.transform.position, transform.position);
+                Vector2 dirToTarget = interactable.transform.position - rotatedTransform.position;
+                float distanceToTarget = Vector2.Distance(interactable.transform.position, rotatedTransform.position);
+                
+                // Is the target object within our view cone or very close
+                if (!(Vector2.Angle(rotatedTransform.up, dirToTarget) < angle / 2) && distanceToTarget > 0.7f) continue;
+                
                 // Is the target object blocked by anything
-                if (Physics2D.Raycast(transform.position, dirToTarget, distanceToTarget, obstructionLayer)) continue;
-                print(interactable.gameObject.name+ "Is not blocked");
-                if (interactable.gameObject.CompareTag("Ghost"))
+                if (Physics2D.Raycast(rotatedTransform.position, dirToTarget, distanceToTarget, obstructionLayer)) continue;
+                
+                // Check what kind of object we just found
+                if (interactable.gameObject.CompareTag("Ghost")) // If it's the ghost, use the flashlight radius
                 {
-                    interactable.gameObject.BroadcastMessage("IncreaseAnger", 1);
-                } else if (interactable.gameObject.CompareTag("Memento"))
+                    if (flashlightOn)
+                    {
+                        interactable.gameObject.BroadcastMessage("IncreaseAnger", 1);
+                    } else if (uvOn)
+                    {
+                        interactable.gameObject.BroadcastMessage("Stun");
+                    }
+                    
+                } else if (interactable.gameObject.CompareTag("Memento") && distanceToTarget <= pickupRadius) // If it's an item, use the pickup radius
                 {
-                    if (!Input.GetKeyDown(KeyCode.E)) continue;
-                    Memento memento = interactable.gameObject.GetComponent<Memento>();
-                    gameManager.FindMemento(memento);
+                    gameManager.ShowInteractable(interactable.transform.position);
+                    interactableMemento = interactable.gameObject.GetComponent<Memento>();
+                } else if (interactable.gameObject.CompareTag("Ritual") && distanceToTarget <= pickupRadius)
+                {
+                    ritual = interactable.gameObject;
+                    gameManager.ShowInteractable(interactable.transform.position);
                 }
             }
         }
@@ -195,16 +196,18 @@ public class PlayerController : MonoBehaviour
 
     void OnDrawGizmos(){
         //Gizmos.DrawWireCube(transform.position, boxSize);
+        if (rotatedTransform == null) rotatedTransform = transform;
 
         Gizmos.color = Color.white;
-        UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.forward, radius);
+        UnityEditor.Handles.DrawWireDisc(rotatedTransform.position, Vector3.forward, flashLightRadius);
+        UnityEditor.Handles.DrawWireDisc(rotatedTransform.position, Vector3.forward, pickupRadius);
 
-        Vector3 angle1 = DirectionFromAngle(-transform.eulerAngles.z, -angle / 2);
-        Vector3 angle2 = DirectionFromAngle(-transform.eulerAngles.z, angle / 2);
+        Vector3 angle1 = DirectionFromAngle(-rotatedTransform.eulerAngles.z, -angle / 2);
+        Vector3 angle2 = DirectionFromAngle(-rotatedTransform.eulerAngles.z, angle / 2);
 
         Gizmos.color = Color.green;
-        Gizmos.DrawLine(transform.position, transform.position + angle1 * radius);
-        Gizmos.DrawLine(transform.position, transform.position + angle2 * radius);
+        Gizmos.DrawLine(rotatedTransform.position, rotatedTransform.position + angle1 * flashLightRadius);
+        Gizmos.DrawLine(rotatedTransform.position, rotatedTransform.position + angle2 * flashLightRadius);
     }
 
     private Vector2 DirectionFromAngle(float eulerY, float degreeAngle)
