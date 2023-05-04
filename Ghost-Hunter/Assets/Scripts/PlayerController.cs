@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
@@ -50,7 +51,7 @@ public class PlayerController : MonoBehaviour
         lookDir = mousePos - lightPosition2D;
         lookDir.Normalize();
         
-        StartCoroutine(CheckFov(lookDir));
+        StartCoroutine(CheckFov());
     }
 
     // Update is called once per frame
@@ -111,37 +112,35 @@ public class PlayerController : MonoBehaviour
     void ToggleFlashlight(){
         flashlightOn = !flashlightOn;
         flashlight.enabled = flashlightOn;
-        StopCoroutine(CheckFov(lookDir));
-        StartCoroutine(CheckFov(lookDir));
+        StopCoroutine(CheckFov());
+        StartCoroutine(CheckFov());
     }
 
-    IEnumerator CheckFov(Vector2 lookDir)
+    IEnumerator CheckFov()
     {
         while (true)
         {
+            yield return new WaitForSeconds(0.5f);
             Collider2D[] rangeCheck = Physics2D.OverlapCircleAll(transform.position, radius, targetLayer);
-            // if (Physics.SphereCast(transform.position, 0.5f, new Vector3(lookDir.x, lookDir.y, 0), out var hitInfo, 3.5f))
-            // {
-            //     if (hitInfo.collider.gameObject.CompareTag("Ghost"))
-            //     {
-            //         print("Found Ghost");
-            //         hitInfo.collider.gameObject.BroadcastMessage("IncreaseAnger", 1);
-            //     }
-            // }
-            //
-            // yield return new WaitForSeconds(0.2f);
-            if (rangeCheck.Length > 0)
+            foreach (var interactable in rangeCheck)
             {
-                Transform target = rangeCheck[0].transform;
-                Vector2 dirToTarget = (target.position - transform.position);
-
-                if (Vector2.Angle(transform.up, dirToTarget) < angle / 2)
+                print(interactable.gameObject.name+ "Is in view radius");
+                Vector2 dirToTarget = interactable.transform.position - transform.position;
+                // Is the target object within our view cone
+                if (!(Vector2.Angle(transform.up, dirToTarget) < angle / 2)) continue;
+                print(interactable.gameObject.name+ "Is in view cone");
+                float distanceToTarget = Vector2.Distance(interactable.transform.position, transform.position);
+                // Is the target object blocked by anything
+                if (Physics2D.Raycast(transform.position, dirToTarget, distanceToTarget, obstructionLayer)) continue;
+                print(interactable.gameObject.name+ "Is not blocked");
+                if (interactable.gameObject.CompareTag("Ghost"))
                 {
-                    float distToTarget = Vector2.Distance(target.position, transform.position);
-                    if (Physics2D.Raycast(transform.position, dirToTarget, distToTarget, obstructionLayer))
-                    {
-                        
-                    }
+                    interactable.gameObject.BroadcastMessage("IncreaseAnger", 1);
+                } else if (interactable.gameObject.CompareTag("Memento"))
+                {
+                    if (!Input.GetKeyDown(KeyCode.E)) continue;
+                    Memento memento = interactable.gameObject.GetComponent<Memento>();
+                    gameManager.FindMemento(memento);
                 }
             }
         }
@@ -150,7 +149,20 @@ public class PlayerController : MonoBehaviour
     void OnDrawGizmos(){
         //Gizmos.DrawWireCube(transform.position, boxSize);
 
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(transform.position + new Vector3(lookDir.x, lookDir.y, 0) * 3.5f, 0.5f);
+        Gizmos.color = Color.white;
+        UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.forward, radius);
+
+        Vector3 angle1 = DirectionFromAngle(-transform.eulerAngles.z, -angle / 2);
+        Vector3 angle2 = DirectionFromAngle(-transform.eulerAngles.z, angle / 2);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(transform.position, transform.position + angle1 * radius);
+        Gizmos.DrawLine(transform.position, transform.position + angle2 * radius);
+    }
+
+    private Vector2 DirectionFromAngle(float eulerY, float degreeAngle)
+    {
+        degreeAngle += eulerY;
+        return new Vector2(Mathf.Sin(degreeAngle * Mathf.Deg2Rad), Mathf.Cos(degreeAngle * Mathf.Deg2Rad));
     }
 }
