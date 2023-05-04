@@ -54,12 +54,10 @@ public class ScareController : MonoBehaviour
 
     private void Alert()
     {
-        print("alerting player");
     }
 
     private void Warn()
     {
-       print("warning player");
     }
 
     private void Kill()
