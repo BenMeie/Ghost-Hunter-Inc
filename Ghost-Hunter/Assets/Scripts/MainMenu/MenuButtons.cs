@@ -42,7 +42,7 @@ public class MenuButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void CreditsButton()
     {
-        Debug.Log("TODO: credits scene");
+        fader.FadeTo("Credits");
     }
 
     public void QuitButton()
