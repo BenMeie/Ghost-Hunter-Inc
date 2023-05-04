@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     [Header("General")] 
     public Ghost ghost;
     public GameObject ritualSpot;
-    public SceneFader fader;
+    public static SceneFader fader;
     
     [Header("UI")]
     public GameObject interactPrompt;
@@ -45,6 +45,8 @@ public class GameManager : MonoBehaviour
              }
         }
 
+        fader = GameObject.FindWithTag("Fader").GetComponent<SceneFader>();
+
     }
 
     public void FindMemento(Memento memento){
@@ -66,7 +68,14 @@ public class GameManager : MonoBehaviour
 
     public void RitualStarted()
     {
-        print("Ritual Started");
+        if (mementosFound == mementosSpawned)
+        {
+            GameOver();
+        }
+        else
+        {
+            print("More Mementos Needed");
+        }
     }
 
     public void ShowInteractable(Vector3 position){
@@ -78,10 +87,10 @@ public class GameManager : MonoBehaviour
         interactPrompt.SetActive(false);
     }
 
-    public void GameOver()
+    public static void GameOver()
     {
-        print("player big dead");
+        // print("player big dead");
         //Disabled for easier testing
-        //fader.FadeTo("MainMenu");
+        fader.FadeTo("MainMenu");
     }
 }

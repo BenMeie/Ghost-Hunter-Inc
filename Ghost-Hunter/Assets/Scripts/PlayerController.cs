@@ -80,7 +80,13 @@ public class PlayerController : MonoBehaviour
             }
             
             //can add check for ritual or other interactable objects here
-            
+            if (hitInfo.collider.gameObject.CompareTag("Ritual"))
+            {
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    gameManager.RitualStarted();
+                }
+            }
         } else {
             gameManager.HideInteractable();
         }

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class ScareController : MonoBehaviour
 {
-    public GameManager gameManager;
+    public HealthManager healthManager;
 
     public float alertRadius;
     public float warningRadius;
@@ -63,7 +63,7 @@ public class ScareController : MonoBehaviour
     private void Kill()
     {
         //print("player big dead");
-        gameManager.GameOver();
+        healthManager.DecreaseHealth();
     }
 
     private void ClearAll()
