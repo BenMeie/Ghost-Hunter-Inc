@@ -1156,6 +1156,7 @@ MonoBehaviour:
   button: {fileID: 382343609}
   cursorTexture: {fileID: 2800000, guid: a85bb54b0333bf341a724b288507773d, type: 3}
   cursorHover: {fileID: 2800000, guid: 7cb58c8e38e9429459f5e51df164b471, type: 3}
+  fader: {fileID: 1841039623}
 --- !u!1 &1080356418
 GameObject:
   m_ObjectHideFlags: 0
@@ -1705,6 +1706,7 @@ MonoBehaviour:
   button: {fileID: 2082737833}
   cursorTexture: {fileID: 2800000, guid: a85bb54b0333bf341a724b288507773d, type: 3}
   cursorHover: {fileID: 2800000, guid: 7cb58c8e38e9429459f5e51df164b471, type: 3}
+  fader: {fileID: 1841039623}
 --- !u!1 &1249335047
 GameObject:
   m_ObjectHideFlags: 0
@@ -2055,6 +2057,7 @@ MonoBehaviour:
   button: {fileID: 2006122705}
   cursorTexture: {fileID: 2800000, guid: a85bb54b0333bf341a724b288507773d, type: 3}
   cursorHover: {fileID: 2800000, guid: 7cb58c8e38e9429459f5e51df164b471, type: 3}
+  fader: {fileID: 0}
 --- !u!114 &1397142162
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2311,6 +2314,7 @@ MonoBehaviour:
   button: {fileID: 22209022}
   cursorTexture: {fileID: 2800000, guid: a85bb54b0333bf341a724b288507773d, type: 3}
   cursorHover: {fileID: 2800000, guid: 7cb58c8e38e9429459f5e51df164b471, type: 3}
+  fader: {fileID: 1841039623}
 --- !u!1001 &1402991675
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2643,6 +2647,7 @@ MonoBehaviour:
   button: {fileID: 566979998}
   cursorTexture: {fileID: 2800000, guid: a85bb54b0333bf341a724b288507773d, type: 3}
   cursorHover: {fileID: 2800000, guid: 7cb58c8e38e9429459f5e51df164b471, type: 3}
+  fader: {fileID: 1841039623}
 --- !u!1 &1516825918
 GameObject:
   m_ObjectHideFlags: 0
