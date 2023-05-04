@@ -147,7 +147,7 @@ public class Ghost : MonoBehaviour
         {
             Vector3 targetPosition = target.position;
             Vector3 currentPosition = transform.position;
-            yield return new WaitForSeconds(10.0f/angerLevel);
+            yield return new WaitForSeconds(8.0f/angerLevel);
             int followChance = Random.Range(1, 11) * angerLevel;
             if (followChance > 60)
             {
