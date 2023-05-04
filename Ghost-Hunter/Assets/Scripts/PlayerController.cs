@@ -20,10 +20,13 @@ public class PlayerController : MonoBehaviour
     [Header("Flashlight")]
     public Light2D flashlight;
     private bool flashlightOn = true;
+    private bool uvOn = false;
     private float battery = 100f;
-    public float depleteRate = 1f;
-    public float rechargeRate = 5f;
+    private float uvBattery = 50f;
+    public float depleteRate = 0.5f;
+    public float rechargeRate = 2f;
     public Image batteryBar;
+    public Image uvBar;
 
     //[Header("Mementos")]
     //public float mementoCheckingDistance = 1f;
@@ -54,6 +57,11 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetMouseButtonDown(0)){
             ToggleFlashlight();
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            ToggleUVLight();
         }
 
         //checking if there's anything interactable where the player is looking
@@ -91,33 +99,78 @@ public class PlayerController : MonoBehaviour
             ToggleFlashlight();
         }
 
+        if (uvBattery <= 0)
+        {
+            ToggleUVLight();
+        }
+
         //can change to make recharging take a bit after or something
         if(flashlightOn){
-            battery -= 0.5f;
+            battery -= depleteRate;
         } else if(battery < 100) {
-            battery += 2f;
+            battery += rechargeRate;
+        }
+
+        if (uvOn) {
+            uvBattery -= depleteRate * 2;
+        } else if (uvBattery < 50)
+        {
+            uvBattery += rechargeRate / 16.0f;
         }
 
         batteryBar.fillAmount = battery / 100.0f;
+        uvBar.fillAmount = uvBattery / 50.0f;
     }
 
     void ToggleFlashlight(){
+        if (uvOn)
+        {
+            uvOn = false;
+            flashlight.color = Color.white;
+            flashlight.enabled = false;
+            StopCoroutine(CheckLightCollision(lookDir));
+        }
         flashlightOn = !flashlightOn;
         flashlight.enabled = flashlightOn;
         StopCoroutine(CheckLightCollision(lookDir));
         StartCoroutine(CheckLightCollision(lookDir));
     }
 
+    void ToggleUVLight()
+    {
+        if (uvOn)
+        {
+            uvOn = false;
+            flashlight.color = Color.white;
+            flashlight.enabled = false;
+            StopCoroutine(CheckLightCollision(lookDir));
+        }
+        else if(uvBattery > 15)
+        {
+            uvOn = true;
+            flashlight.color = Color.magenta;
+            flashlight.enabled = true;
+            flashlightOn = false;
+            StartCoroutine(CheckLightCollision(lookDir));
+        }
+    }
+
     IEnumerator CheckLightCollision(Vector2 lookDir)
     {
-        while (flashlightOn)
+        while (flashlightOn || uvOn)
         {
             if (Physics.SphereCast(transform.position, 0.5f, new Vector3(lookDir.x, lookDir.y, 0), out var hitInfo, 3.5f))
             {
                 if (hitInfo.collider.gameObject.CompareTag("Ghost"))
                 {
-                    print("Found Ghost");
-                    hitInfo.collider.gameObject.BroadcastMessage("IncreaseAnger", 1);
+                    if (flashlightOn)
+                    {
+                        hitInfo.collider.gameObject.BroadcastMessage("IncreaseAnger", 1);
+                    } else if (uvOn)
+                    {
+                        hitInfo.collider.gameObject.BroadcastMessage("Stun");
+                    }
+                    
                 }
             }
 
