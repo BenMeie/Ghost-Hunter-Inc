@@ -15,6 +15,7 @@ public class MenuButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     public Texture2D cursorHover;
     private CursorMode cursorMode = CursorMode.Auto;
     private Vector2 hotSpot = Vector2.zero;
+    public SceneFader fader;
 
     private void Start()
     {
@@ -36,7 +37,7 @@ public class MenuButtons : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void PlayButton()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        fader.FadeTo("CharacterSelect");
     }
 
     public void CreditsButton()
