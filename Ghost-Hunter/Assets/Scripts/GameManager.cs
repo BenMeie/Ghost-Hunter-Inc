@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -11,6 +12,8 @@ public class GameManager : MonoBehaviour
     
     [Header("UI")]
     public GameObject interactPrompt;
+
+    public TextMeshProUGUI mementoDisplayUi;
 
     [Header("Mementos")]
     //how many mementos to spawn
@@ -48,8 +51,12 @@ public class GameManager : MonoBehaviour
         memento.Found();
         print("Memento: " + memento.id);
         mementosFound++;
-        //add to GUI here
-
+        
+        
+        //displays the UI for finding the memento
+        mementoDisplayUi.GetComponent<MementoDisplayController>().displayMemento(memento);
+        
+        
         ghost.IncreaseMinAnger();
 
         if(mementosFound >= mementosSpawned){

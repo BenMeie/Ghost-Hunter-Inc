@@ -13,22 +13,29 @@ public class Ghost : MonoBehaviour
     public int angerLevel = 1;
     public int minAnger = 1;
     public bool updating = true;
+    public bool stunned;
+
+    public AudioClip[] ambientSounds;
+    public AudioClip[] angerSounds;
 
     private NavMeshAgent agent;
     private Animator animController;
     private SpriteRenderer sprite;
+    private AudioSource audioSource;
     
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        agent.SetDestination(target.position);
+        agent.SetDestination(new Vector3(target.position.x + Random.Range(-10.0f, 10.0f),target.position.y + Random.Range(-10.0f, 10.0f), target.position.z));
         animController = spriteObject.GetComponent<Animator>();
         sprite = spriteObject.GetComponent<SpriteRenderer>();
-        
+        audioSource = GetComponent<AudioSource>();
+            
         UpdateDifficulty();
         StartCoroutine(UpdateTarget());
         StartCoroutine(Calm());
+        StartCoroutine(playSound());
     }
 
     // Update is called once per frame
@@ -97,36 +104,46 @@ public class Ghost : MonoBehaviour
         {
             case <5:
                 agent.acceleration = 2.1f;
-                agent.speed = 1.2f;
+                agent.speed = 1.5f;
                 agent.stoppingDistance = 3;
                 break;
             case <10:
                 agent.acceleration = 2.2f;
-                agent.speed = 1.4f;
+                agent.speed = 2.0f;
                 agent.stoppingDistance = 3;
                 break;
             case <15:
                 agent.acceleration = 2.3f;
-                agent.speed = 1.6f;
+                agent.speed = 2.5f;
                 agent.stoppingDistance = 2;
                 break;
             case <20 :
                 agent.acceleration = 2.4f;
-                agent.speed = 1.8f;
+                agent.speed = 3.0f;
                 agent.stoppingDistance = 0;
                 break;
             case <25 :
                 agent.acceleration = 2.5f;
-                agent.speed = 2f;
+                agent.speed = 3.5f;
+                break;
+            default:
+                agent.acceleration = 2.5f;
+                agent.speed = 4.0f;
                 break;
         }
         StopCoroutine(UpdateTarget());
         StartCoroutine(UpdateTarget());
     }
 
+    public void Stun()
+    {
+        StopCoroutine(StunTimer());
+        StartCoroutine(StunTimer());
+    }
+
     IEnumerator UpdateTarget()
     {
-        while (updating)
+        while (updating && !stunned)
         {
             Vector3 targetPosition = target.position;
             Vector3 currentPosition = transform.position;
@@ -149,6 +166,36 @@ public class Ghost : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
             DecreaseAnger();
+        }
+    }
+
+    IEnumerator StunTimer()
+    {
+        stunned = true;
+        agent.speed = 0;
+        agent.velocity = new Vector3();
+        yield return new WaitForSeconds(2);
+        stunned = false;
+        UpdateDifficulty();
+    }
+
+    IEnumerator playSound()
+    {
+        while (updating)
+        {
+            yield return new WaitForSeconds(Random.Range(20, 50f));
+            if (angerLevel > 15)
+            {
+                audioSource.clip = angerSounds[Random.Range(0, angerSounds.Length)];
+                audioSource.pitch = Random.Range(0.8f, 1.2f);
+                audioSource.Play();
+            }
+            else
+            {
+                audioSource.clip = ambientSounds[Random.Range(0, ambientSounds.Length)];
+                audioSource.pitch = Random.Range(0.8f, 1.2f);
+                audioSource.Play();
+            }
         }
     }
 }
