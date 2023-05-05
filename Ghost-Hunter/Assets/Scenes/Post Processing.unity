@@ -132724,7 +132724,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthManager: {fileID: 107767515}
-  gameManager: {fileID: 0}
+  postProcessing: {fileID: 2126174391}
   alertRadius: 5
   warningRadius: 3
   deathRadius: 0.5
@@ -135946,11 +135946,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cebcbce8d016904ba9ff11f80302f54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  curve:
+  tempEffectCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
+      time: -0.0000000018626451
       value: 0.99999994
       inSlope: 0
       outSlope: 0
@@ -135959,17 +135959,17 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.4283624
-      value: 1.002442
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 136
+      time: 0.4864642
+      value: 0.9057242
+      inSlope: -0.41918018
+      outSlope: -0.41918018
+      tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.33333334
+      outWeight: 0.121227674
     - serializedVersion: 3
-      time: 1.018347
-      value: -0.015824936
+      time: 1.000215
+      value: -0.004039824
       inSlope: 0
       outSlope: 0
       tangentMode: 136
@@ -135980,16 +135980,59 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   tempEffectLength: 1
-  lowChromaticAberrationIntensity: 0.15
-  lowFilmGrainIntensity: 0.5
-  lowBloomIntensity: 5
-  lowLensDistortionIntensity: 0.2
-  lowLensDistortionScale: 1
-  highChromaticAberrationIntensity: 0.45
-  highFilmGrainIntensity: 15
-  highBloomIntensity: 12
-  highLensDistortionIntensity: 0.4
-  highLensDistortionScale: 1.06
+  generalCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.00000026030466
+      value: 1.0094261
+      inSlope: -4.4739566
+      outSlope: -4.4739566
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 0.17397645
+      value: 0.23106414
+      inSlope: -3.025652
+      outSlope: -3.025652
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.045841146
+    - serializedVersion: 3
+      time: 0.25075892
+      value: 0.045127004
+      inSlope: -0.31251612
+      outSlope: -0.31251612
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.0800983
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.060230285
+      outSlope: -0.060230285
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  generalLimit: 0.5
+  chromaticAberrationIntensity: 0.15
+  filmGrainIntensity: 0.5
+  bloomIntensity: 5
+  lensDistortionIntensity: 0.2
+  lensDistortionScale: 1
+  chromaticAberrationIntensityBoost: 0.3
+  filmGrainIntensityBoost: 14.5
+  bloomIntensityBoost: 7
+  lensDistortionIntensityBoost: 0.3
+  lensDistortionScaleBoost: 0.06
 --- !u!1 &2134733523
 GameObject:
   m_ObjectHideFlags: 0

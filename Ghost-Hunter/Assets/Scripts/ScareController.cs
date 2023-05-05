@@ -7,7 +7,9 @@ using UnityEngine;
 public class ScareController : MonoBehaviour
 {
     public HealthManager healthManager;
-    public GameManager gameManager;
+    //doing this directly might not be the cleanest way
+    //might make sense to route both of these through the gameMangaer
+    public PostProcessing postProcessing; 
 
     public float alertRadius;
     public float warningRadius;
@@ -51,6 +53,7 @@ public class ScareController : MonoBehaviour
     private void FindDistanceFromGhost()
     {
         distanceFromGhost = Vector3.Distance(transform.position, ghost.transform.position);
+        postProcessing.UpdateEffects(distanceFromGhost);
     }
 
     private void Alert()
@@ -65,6 +68,7 @@ public class ScareController : MonoBehaviour
     {
         //print("player big dead");
         healthManager.DecreaseHealth();
+        postProcessing.PlayerDamaged();
     }
 
     private void ClearAll()
