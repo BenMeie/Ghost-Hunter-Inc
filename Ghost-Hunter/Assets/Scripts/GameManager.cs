@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
         //will break Unity if all mementos aren't disabled
         for(int i = 0; mementosSpawned > i; i++)
         {
-            int choice = Random.Range(0, mementosSpawned);
+            int choice = Random.Range(0, mementos.Length);
             
             //checking if object is already active
             //want to make sure the numbers are unique
