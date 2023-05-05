@@ -7,6 +7,7 @@ TagManager:
   - Ghost
   - Memento
   - Ritual
+  - Fader
   layers:
   - Default
   - TransparentFX

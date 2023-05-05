@@ -22,6 +22,8 @@ public class Ghost : MonoBehaviour
     private Animator animController;
     private SpriteRenderer sprite;
     private AudioSource audioSource;
+    private float angerTimer;
+    private bool canGetAngry = true;
     
     // Start is called before the first frame update
     void Start()
@@ -31,6 +33,8 @@ public class Ghost : MonoBehaviour
         animController = spriteObject.GetComponent<Animator>();
         sprite = spriteObject.GetComponent<SpriteRenderer>();
         audioSource = GetComponent<AudioSource>();
+
+        angerTimer = 0.4f;
             
         UpdateDifficulty();
         StartCoroutine(UpdateTarget());
@@ -81,6 +85,8 @@ public class Ghost : MonoBehaviour
 
     public void IncreaseAnger(int by = 1)
     {
+        if (!canGetAngry) return;
+        StartCoroutine(angerDelay());
         angerLevel += by;
         UpdateDifficulty();
     }
@@ -147,7 +153,7 @@ public class Ghost : MonoBehaviour
         {
             Vector3 targetPosition = target.position;
             Vector3 currentPosition = transform.position;
-            yield return new WaitForSeconds(10.0f/angerLevel);
+            yield return new WaitForSeconds(8.0f/angerLevel);
             int followChance = Random.Range(1, 11) * angerLevel;
             if (followChance > 60)
             {
@@ -197,5 +203,12 @@ public class Ghost : MonoBehaviour
                 audioSource.Play();
             }
         }
+    }
+
+    IEnumerator angerDelay()
+    {
+        canGetAngry = false;
+        yield return new WaitForSeconds(angerTimer);
+        canGetAngry = true;
     }
 }
