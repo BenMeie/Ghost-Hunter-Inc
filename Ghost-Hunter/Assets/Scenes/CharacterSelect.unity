@@ -1351,6 +1351,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a380a02d4a586649bc6688b652c8677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fader: {fileID: 1560491052}
 --- !u!1 &512131369
 GameObject:
   m_ObjectHideFlags: 0
