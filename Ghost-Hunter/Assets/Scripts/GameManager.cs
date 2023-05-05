@@ -81,6 +81,8 @@ public class GameManager : MonoBehaviour
     {
         ghost.IncreaseAnger(amount);
         postProcessing.GhostAngered();
+        //would be cool to have a sound queue for
+        //when the player angers the ghost
     }
 
     public void StunGhost()
