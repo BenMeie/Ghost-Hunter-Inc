@@ -175,10 +175,11 @@ public class PlayerController : MonoBehaviour
                 {
                     if (flashlightOn)
                     {
-                        interactable.gameObject.BroadcastMessage("IncreaseAnger", 1);
+                        gameManager.AngerGhost(1);
+
                     } else if (uvOn)
                     {
-                        interactable.gameObject.BroadcastMessage("Stun");
+                        gameManager.StunGhost();
                     }
                     
                 } else if (interactable.gameObject.CompareTag("Memento") && distanceToTarget <= pickupRadius) // If it's an item, use the pickup radius

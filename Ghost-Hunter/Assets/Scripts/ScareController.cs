@@ -7,6 +7,7 @@ using UnityEngine;
 public class ScareController : MonoBehaviour
 {
     public HealthManager healthManager;
+    public GameManager gameManager;
 
     public float alertRadius;
     public float warningRadius;

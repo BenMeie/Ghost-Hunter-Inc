@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     
     [Header("UI")]
     public GameObject interactPrompt;
+    public PostProcessing postProcessing;
 
     public TextMeshProUGUI mementoDisplayUi;
 
@@ -40,8 +41,6 @@ public class GameManager : MonoBehaviour
                  i--; //going to have to choose another
              } else {
                  mementos[choice].gameObject.SetActive(true);
-                 //setting Id of memento
-                 mementos[choice].id = choice;
              }
         }
 
@@ -51,7 +50,7 @@ public class GameManager : MonoBehaviour
 
     public void FindMemento(Memento memento){
         memento.Found();
-        print("Memento: " + memento.id);
+        print("Memento: " + memento.name);
         mementosFound++;
         
         
@@ -76,6 +75,18 @@ public class GameManager : MonoBehaviour
         {
             print("More Mementos Needed");
         }
+    }
+
+    public void AngerGhost(int amount)
+    {
+        ghost.IncreaseAnger(amount);
+        postProcessing.GhostAngered();
+    }
+
+    public void StunGhost()
+    {
+        ghost.Stun();
+        postProcessing.GhostStunned();
     }
 
     public void ShowInteractable(Vector3 position){
