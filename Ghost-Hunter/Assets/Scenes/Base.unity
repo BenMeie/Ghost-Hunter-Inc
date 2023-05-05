@@ -121418,7 +121418,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.06, y: -0.09}
-  m_Size: {x: 0.87, y: 1.48}
+  m_Size: {x: 0.48, y: 1.48}
   m_Direction: 0
 --- !u!1001 &182162994
 PrefabInstance:
@@ -132804,7 +132804,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.5}
+  m_Size: {x: 0.37, y: 0.38}
   m_EdgeRadius: 0
 --- !u!212 &1276566900
 SpriteRenderer:
@@ -132899,8 +132899,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   flashlight: {fileID: 491478548}
-  depleteRate: 1
-  rechargeRate: 5
+  depleteRate: 0.5
+  rechargeRate: 2
   batteryBar: {fileID: 1693854979}
   uvBar: {fileID: 698731694}
 --- !u!82 &1276566903
