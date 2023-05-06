@@ -6,8 +6,6 @@ using UnityEngine;
 public class Memento : MonoBehaviour
 {
     //is set when it's set to active in the
-    [HideInInspector]
-    public int id; //each memento will have its own integer
     public GameObject particles;
 
     public Sprite mySprite;
@@ -18,7 +16,6 @@ public class Memento : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         GetComponent<SpriteRenderer>().sprite = mySprite;
     }
 
