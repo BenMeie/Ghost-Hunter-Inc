@@ -62,7 +62,7 @@ public class PostProcessing : MonoBehaviour
             distance = Mathf.Clamp(distance, 0, 100)/100;
             float percent = generalCurve.Evaluate(distance);
             
-            print("Update Effects: " + percent);
+            // print("Update Effects: " + percent);
 
             chromaticAberration.intensity.value = Mathf.Lerp(chromaticAberrationIntensity, chromaticAberrationIntensity + (chromaticAberrationIntensityBoost * generalLimit), percent);
             filmGrain.intensity.value = Mathf.Lerp(filmGrainIntensity,  filmGrainIntensity + (filmGrainIntensityBoost * generalLimit), percent);
