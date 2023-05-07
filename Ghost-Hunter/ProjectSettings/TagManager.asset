@@ -8,6 +8,7 @@ TagManager:
   - Memento
   - Ritual
   - Fader
+  - Jumpscare
   layers:
   - Default
   - TransparentFX
