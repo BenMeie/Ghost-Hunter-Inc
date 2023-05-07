@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            print("More Mementos Needed");
+            print($"{mementosSpawned - mementosFound} More Mementos Needed");
         }
     }
 
