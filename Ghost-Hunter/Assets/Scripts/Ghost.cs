@@ -119,21 +119,21 @@ public class Ghost : MonoBehaviour
                 agent.stoppingDistance = 3;
                 break;
             case <15:
-                agent.acceleration = 2.3f;
+                agent.acceleration = 5f;
                 agent.speed = 2.5f;
                 agent.stoppingDistance = 2;
                 break;
             case <20 :
-                agent.acceleration = 2.4f;
+                agent.acceleration = 10f;
                 agent.speed = 3.0f;
                 agent.stoppingDistance = 0;
                 break;
             case <25 :
-                agent.acceleration = 2.5f;
+                agent.acceleration = 10f;
                 agent.speed = 3.5f;
                 break;
             default:
-                agent.acceleration = 2.5f;
+                agent.acceleration = 15f;
                 agent.speed = 4.0f;
                 break;
         }
@@ -161,7 +161,7 @@ public class Ghost : MonoBehaviour
             }
             else if (followChance < 30 && angerLevel < 20)
             {
-                agent.SetDestination(new Vector3(targetPosition.x + Random.Range(-10.0f, 10.0f),targetPosition.y + Random.Range(-10.0f, 10.0f), currentPosition.z));
+                agent.SetDestination(new Vector3(targetPosition.x + Random.Range(-15.0f, 15.0f),targetPosition.y + Random.Range(-15.0f, 15.0f), currentPosition.z));
             }
         }
     }

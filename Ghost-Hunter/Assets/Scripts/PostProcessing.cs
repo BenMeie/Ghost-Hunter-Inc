@@ -24,6 +24,7 @@ public class PostProcessing : MonoBehaviour
     public float tempEffectLength;
     public AnimationCurve generalCurve;
     public float generalLimit; //limit for general traversal, not counting events
+    public Material scanlines;
 
     [Header("Lower Limit")] //For when there are the least effects
     public float chromaticAberrationIntensity;
@@ -31,6 +32,7 @@ public class PostProcessing : MonoBehaviour
     public float bloomIntensity;
     public float lensDistortionIntensity;
     public float lensDistortionScale;
+    public float scanlinesIntensity;
     
     [Header("Max Boost")] //High values for the most effects
     //inputted as the increase from lower limit
@@ -39,6 +41,7 @@ public class PostProcessing : MonoBehaviour
     public float bloomIntensityBoost;
     public float lensDistortionIntensityBoost;
     public float lensDistortionScaleBoost;
+    public float scanlinesIntensityBoost;
 
     void Start()
     {
@@ -69,6 +72,7 @@ public class PostProcessing : MonoBehaviour
             bloom.intensity.value = Mathf.Lerp(bloomIntensity, bloomIntensity + (bloomIntensityBoost * generalLimit), percent);
             lensDistortion.intensity.value = Mathf.Lerp(lensDistortionIntensity, lensDistortionIntensity + (lensDistortionIntensityBoost * generalLimit), percent);
             lensDistortion.scale.value = Mathf.Lerp(lensDistortionScale, lensDistortionScale + (lensDistortionScaleBoost * generalLimit), percent);
+            scanlines.SetFloat("_Blend", Mathf.Lerp(scanlinesIntensity, scanlinesIntensity + (scanlinesIntensityBoost * generalLimit), percent));
         }
     }
 
@@ -102,6 +106,7 @@ public class PostProcessing : MonoBehaviour
             bloom.intensity.value = Mathf.Lerp(bloomIntensity, bloomIntensity + (bloomIntensityBoost * limit), percent);
             lensDistortion.intensity.value = Mathf.Lerp(lensDistortionIntensity, lensDistortionIntensity + (lensDistortionIntensityBoost * limit), percent);
             lensDistortion.scale.value = Mathf.Lerp(lensDistortionScale, lensDistortionScale + (lensDistortionScaleBoost * limit), percent);
+            scanlines.SetFloat("_Blend", Mathf.Lerp(scanlinesIntensity, scanlinesIntensity + (scanlinesIntensityBoost * generalLimit), percent));
             yield return 0;
         }
 
