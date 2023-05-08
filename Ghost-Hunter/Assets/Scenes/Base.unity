@@ -141718,13 +141718,13 @@ MonoBehaviour:
   bloomIntensity: 5
   lensDistortionIntensity: 0.2
   lensDistortionScale: 1
-  scanlinesIntensity: 0
+  scanlinesIntensity: 0.005
   chromaticAberrationIntensityBoost: 0.3
   filmGrainIntensityBoost: 14.5
   bloomIntensityBoost: 7
   lensDistortionIntensityBoost: 0.3
   lensDistortionScaleBoost: 0.06
-  scanlinesIntensityBoost: 0.06
+  scanlinesIntensityBoost: 0.04
 --- !u!1 &2134733523
 GameObject:
   m_ObjectHideFlags: 0
