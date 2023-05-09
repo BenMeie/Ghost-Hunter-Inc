@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public PostProcessing postProcessing;
 
     public TextMeshProUGUI mementoDisplayUi;
+    public TextMeshProUGUI ritualFailedUi;
 
     [Header("Mementos")]
     //how many mementos to spawn
@@ -71,13 +72,17 @@ public class GameManager : MonoBehaviour
 
     public void RitualStarted()
     {
+        Debug.Log("Attempting Ritual");
         if (mementosFound == mementosSpawned)
         {
-            GameOver();
+            //GameOver();
+            ExorciseGhost();
         }
         else
         {
-            print("More Mementos Needed");
+            ritualFailedUi.GetComponent<TextMeshProUGUI>().text = ($"{mementosSpawned - mementosFound} More Mementos Needed");
+            ritualFailedUi.GetComponent<Animator>().SetTrigger("AttemptedRitual");
+            print($"{mementosSpawned - mementosFound} More Mementos Needed");
         }
     }
 
@@ -111,5 +116,11 @@ public class GameManager : MonoBehaviour
         // print("player big dead");
         //Disabled for easier testing
         fader.FadeToGO("MainMenu");
+    }
+
+    //this is the win condition
+    public static void ExorciseGhost()
+    {
+        fader.FadeToGO("Credits");
     }
 }
