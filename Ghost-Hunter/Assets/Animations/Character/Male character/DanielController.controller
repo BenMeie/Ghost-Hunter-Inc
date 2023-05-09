@@ -20,7 +20,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: fb82ec43b99bb5249b430bab9627c10b, type: 2}
+  m_Motion: {fileID: 7400000, guid: 58254440b861e074d9de60c6f7456fc7, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -46,7 +46,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 81e8e9dd176013f4aa191f49b4e85efa, type: 2}
+  m_Motion: {fileID: 7400000, guid: f947bae473a331e4380fab0aefd2debf, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -103,7 +103,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: c93656e44e2ba2c4cb1b88dbb54ac3ea, type: 2}
+  m_Motion: {fileID: 7400000, guid: e70c4d2f9057f064baff2315608d3ea0, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -115,7 +115,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: FemaleController
+  m_Name: DanielController
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers:
@@ -151,7 +151,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 3dd0572ac1281c74686b8a82ac7d0c7a, type: 2}
+  m_Motion: {fileID: 7400000, guid: 52065ee9997ac3048b6c8d4e9449956c, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
