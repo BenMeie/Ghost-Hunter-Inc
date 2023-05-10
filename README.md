@@ -92,15 +92,19 @@ Sounds
 * [Thunder : Free sounds - DragishaRambo21](https://freesound.org/people/DragishaRambo21/sounds/345920/)
 * [Main Menu Song : Uppbeat - Danijel Zambo](https://uppbeat.io/track/danijel-zambo/friendly-ghost?rt=uc-referral)
 * [Game Song : Uppbeat - Brandon Hopkins](https://uppbeat.io/t/brandon-hopkins/neighborhood)
+* [Letter Cutscene Page Turned : Free sounds - krnash](https://freesound.org/people/krnash/sounds/389807/)
 * [Character Select Song : Free sounds - 13NHarri](https://freesound.org/people/13NHarri/sounds/511043/)
 
 Assets
 * [Cursors : Pixel Cursors](https://assetstore.unity.com/packages/2d/gui/icons/pixel-cursors-109256)
 * [Font : Pixel Font - Tripfive](https://assetstore.unity.com/packages/2d/fonts/pixel-font-tripfive-64734#content)
+* [Letter Cutscene Font : Bangalore - 9031](https://www.fontspace.com/category/cursive,pixel)
 * [NavMeshPlus](https://github.com/h8man/NavMeshPlus)
 
 Illustrations
 * [Main Menu Background : Pixel Joint](https://pixeljoint.com/pixelart/133555.htm)
+* [Letter Cutscene Background : Simón Sánchez](https://www.artstation.com/artwork/nBX59)
+* [Letter Cutscene Letter : Unknown](https://pixelartmaker.com/art/3f4734bb2c3ce0f)
 
 <p align="right"><a href="#readme-top">:arrow_up:back to top</a></p>
 

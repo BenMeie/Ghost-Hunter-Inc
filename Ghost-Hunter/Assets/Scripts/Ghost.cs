@@ -10,6 +10,7 @@ public class Ghost : MonoBehaviour
 
     public Transform target;
     [FormerlySerializedAs("ghostSprite")] public GameObject spriteObject;
+    public bool isattacking = false;
     public int angerLevel = 1;
     public int minAnger = 1;
     public bool updating = true;
@@ -46,15 +47,15 @@ public class Ghost : MonoBehaviour
     void Update()
     {
         spriteObject.transform.rotation = Quaternion.identity;
-        if (agent.velocity.magnitude > 1.0f)
+        if (agent.velocity.magnitude > 1.0f && !isattacking)
         {
             animController.Play("Run");
         }
-        else if (agent.velocity.magnitude > 0.0f)
+        else if (agent.velocity.magnitude > 0.0f && !isattacking)
         {
             animController.Play("Walk");
         }
-        else
+        else if (!isattacking)
         {
             animController.Play("Idle");
         }
@@ -67,6 +68,19 @@ public class Ghost : MonoBehaviour
         {
             sprite.flipX = false;
         }
+    }
+
+    public IEnumerator attack()
+    {
+        isattacking = true;
+        updating = false;
+        agent.speed = 0;
+        agent.velocity = new Vector3();
+        animController.Play("Attack");
+        yield return new WaitForSeconds(1);
+        isattacking = false;
+        updating = true;
+        UpdateDifficulty();
     }
 
     void FoundMemento(int id)
