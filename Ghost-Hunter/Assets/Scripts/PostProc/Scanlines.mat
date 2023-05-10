@@ -41,8 +41,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Amount: 56.92
+    - _Amount: 100
     - _Blend: 0.013775417
+    - _NoiseAmount: 150
+    - _NoiseSize: 150
     - _Size: 0.4
     - _Speed: 0.79
     m_Colors: []
