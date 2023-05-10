@@ -131,6 +131,6 @@ public class GameManager : MonoBehaviour
     //this is the win condition
     public static void ExorciseGhost()
     {
-        fader.FadeToGO("Credits");
+        fader.FadeToGO("FinalCutscene");
     }
 }
