@@ -4,8 +4,8 @@
 <!-- Logo and title -->
 <div align="center">
 
-  <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="https://png2.cleanpng.com/sh/7ad2d69275d76eda0a18b32c9bef7e13/L0KzQYm3VcE5N5xuiJH0aYP2gLBuTgBqgJZxRdN7dD3kfrr0ggRmbF5rgd52LXfrf8T7TcVibpc6T9Y6YnG2R4i3TsQ5OmE3TKo7MUW1RoeBU8YxOWg7Sqo3cH7q/kisspng-pixel-art-animated-film-ghost-5aff57d1ba3770.4820248215266836017628.png" alt="Logo" width="90" height="90">
+  <a href="https://www.hiclipart.com/free-transparent-background-png-clipart-fsidp">
+    <img src="https://o.remove.bg/uploads/9fbceef7-71b5-4a8b-819d-179f156462b1/pixel-art-animated-film-ghost-ghost-39dcc085d1150779e0dd0720f91450ff.png" alt="Logo" width="110" height="100">
   </a>
 
   <h3 align="center">Ghost Hunter Inc. <br /></h3>
@@ -94,6 +94,8 @@ Sounds
 * [Game Song : Uppbeat - Brandon Hopkins](https://uppbeat.io/t/brandon-hopkins/neighborhood)
 * [Letter Cutscene Page Turned : Free sounds - krnash](https://freesound.org/people/krnash/sounds/389807/)
 * [Character Select Song : Free sounds - 13NHarri](https://freesound.org/people/13NHarri/sounds/511043/)
+* [Credits Song : Free sounds - Migfus20](https://freesound.org/people/Migfus20/sounds/683265/)
+* [Jumpscare : Free sounds - EliplayzEP](https://freesound.org/people/EliplayzEP/sounds/653730/)
 
 Assets
 * [Cursors : Pixel Cursors](https://assetstore.unity.com/packages/2d/gui/icons/pixel-cursors-109256)
