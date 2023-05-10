@@ -76,11 +76,24 @@ public class PlayerController : MonoBehaviour
         {
             ToggleUVLight();
         }
-        if(Input.GetKeyDown(KeyCode.E) && interactableMemento != null)
+        
+        //altered this part of the script so that it looks for mementos and also looks for the ritual
+        if(Input.GetKeyDown(KeyCode.E) )
         {
-            gameManager.FindMemento(interactableMemento);
-            interactableMemento = null;
+            if (interactableMemento != null)
+            {
+                gameManager.FindMemento(interactableMemento);
+                interactableMemento = null;
+            }
+
+            if (ritual != null)
+            {
+                gameManager.RitualStarted();
+                ritual = null;
+            }
+            
         }
+        
     }
 
     private void FixedUpdate()
@@ -158,6 +171,7 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForSeconds(0.4f);
             gameManager.HideInteractable();
             interactableMemento = null;
+            ritual = null;//added this here to change the ritual to null when you aren't actively looking at it
             Collider2D[] rangeCheck = Physics2D.OverlapCircleAll(rotatedTransform.position, flashLightRadius, targetLayer);
             foreach (var interactable in rangeCheck)
             {

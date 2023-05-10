@@ -17,6 +17,11 @@ public class GameManager : MonoBehaviour
     public PostProcessing postProcessing;
 
     public TextMeshProUGUI mementoDisplayUi;
+//<<<<<<< Updated upstream
+    //public TextMeshProUGUI ritualFailedUi;
+//=======
+    public GameObject inventory;
+//>>>>>>> Stashed changes
 
     [Header("Mementos")]
     //how many mementos to spawn
@@ -60,9 +65,10 @@ public class GameManager : MonoBehaviour
         
         //displays the UI for finding the memento
         mementoDisplayUi.GetComponent<MementoDisplayController>().displayMemento(memento);
-        
+        inventory.GetComponent<InventoryScript>().addMemento(memento);
         
         ghost.IncreaseMinAnger();
+        
 
         if(mementosFound >= mementosSpawned){
             //ritualSpot.activate(); or something
@@ -71,13 +77,22 @@ public class GameManager : MonoBehaviour
 
     public void RitualStarted()
     {
+        Debug.Log("Attempting Ritual");
         if (mementosFound == mementosSpawned)
         {
-            GameOver();
+            //GameOver();
+            ExorciseGhost();
         }
         else
         {
+
+            print($"{mementosSpawned - mementosFound} More Mementos Needed");
+
+            
+            //have the remaining inventory slots flash red
+            inventory.GetComponent<InventoryScript>().failRitual();
             print("More Mementos Needed");
+
         }
     }
 
@@ -111,5 +126,11 @@ public class GameManager : MonoBehaviour
         // print("player big dead");
         //Disabled for easier testing
         fader.FadeToGO("MainMenu");
+    }
+
+    //this is the win condition
+    public static void ExorciseGhost()
+    {
+        fader.FadeToGO("Credits");
     }
 }

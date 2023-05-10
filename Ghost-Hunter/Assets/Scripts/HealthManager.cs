@@ -25,6 +25,8 @@ public class HealthManager : MonoBehaviour
         if (invulnerable) return;
         if (currentHealth == 1)
         {
+            
+            Debug.Log("Player died");
             GameManager.GameOver();
         }
 
