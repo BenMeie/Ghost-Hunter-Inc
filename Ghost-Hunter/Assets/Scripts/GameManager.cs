@@ -80,6 +80,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Attempting Ritual");
         if (mementosFound == mementosSpawned)
         {
+            PlayerPrefs.SetInt("Finished", 1);
             //GameOver();
             ExorciseGhost();
         }

@@ -13,5 +13,9 @@ public class buttonGameFinished : MonoBehaviour
         {
             this.GetComponent<Button>().interactable = false;
         }
+        else
+        {
+            GetComponent<Button>().interactable = true;
+        }
     }
 }
