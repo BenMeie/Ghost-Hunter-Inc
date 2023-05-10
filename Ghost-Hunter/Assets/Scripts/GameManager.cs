@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,12 +10,14 @@ public class GameManager : MonoBehaviour
     public Ghost ghost;
     public GameObject ritualSpot;
     public static SceneFader fader;
-    
+
     [Header("UI")]
+    public static Image jumpscare;
     public GameObject interactPrompt;
     public PostProcessing postProcessing;
 
     public TextMeshProUGUI mementoDisplayUi;
+    public TextMeshProUGUI ritualFailedUi;
 
     [Header("Mementos")]
     //how many mementos to spawn
@@ -29,6 +32,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        jumpscare = GameObject.FindWithTag("Jumpscare").GetComponent<Image>();
+        jumpscare.enabled = false;
         //Randomly choosing mementos to spawn
         //will break Unity if all mementos aren't disabled
         for(int i = 0; mementosSpawned > i; i++)
@@ -67,13 +72,17 @@ public class GameManager : MonoBehaviour
 
     public void RitualStarted()
     {
+        Debug.Log("Attempting Ritual");
         if (mementosFound == mementosSpawned)
         {
-            GameOver();
+            //GameOver();
+            ExorciseGhost();
         }
         else
         {
-            print("More Mementos Needed");
+            ritualFailedUi.GetComponent<TextMeshProUGUI>().text = ($"{mementosSpawned - mementosFound} More Mementos Needed");
+            ritualFailedUi.GetComponent<Animator>().SetTrigger("AttemptedRitual");
+            print($"{mementosSpawned - mementosFound} More Mementos Needed");
         }
     }
 
@@ -102,8 +111,16 @@ public class GameManager : MonoBehaviour
 
     public static void GameOver()
     {
+        jumpscare.enabled = true;
+        jumpscare.GetComponent<AudioSource>().Play();
         // print("player big dead");
         //Disabled for easier testing
-        fader.FadeTo("MainMenu");
+        fader.FadeToGO("MainMenu");
+    }
+
+    //this is the win condition
+    public static void ExorciseGhost()
+    {
+        fader.FadeToGO("Credits");
     }
 }
