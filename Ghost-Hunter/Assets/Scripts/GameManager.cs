@@ -83,6 +83,7 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.SetInt("Finished", 1);
             ghost.updating = false;
             ghost.isattacking = true;
+            ghost.Stun();
             //GameOver();
             ExorciseGhost();
         }
@@ -128,7 +129,7 @@ public class GameManager : MonoBehaviour
         jumpscare.GetComponent<AudioSource>().Play();
         // print("player big dead");
         //Disabled for easier testing
-        fader.FadeToGO("MainMenu");
+        fader.FadeToGO("Main Menu");
     }
 
     //this is the win condition
