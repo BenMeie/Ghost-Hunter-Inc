@@ -81,6 +81,8 @@ public class GameManager : MonoBehaviour
         if (mementosFound == mementosSpawned)
         {
             PlayerPrefs.SetInt("Finished", 1);
+            ghost.updating = false;
+            ghost.isattacking = true;
             //GameOver();
             ExorciseGhost();
         }

@@ -15,6 +15,8 @@ public class Sounds : MonoBehaviour
 
     public void play_sound()
     {
+        audioSource.volume = Random.Range(0.8f, 1f);
+        audioSource.pitch = Random.Range(0.95f, 1.05f);
         audioSource.Play();
     }
 
