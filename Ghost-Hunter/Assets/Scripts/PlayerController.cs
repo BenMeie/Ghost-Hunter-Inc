@@ -1,4 +1,8 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.UI;
@@ -205,25 +209,25 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // void OnDrawGizmos(){
-    //     //Gizmos.DrawWireCube(transform.position, boxSize);
-    //     if (rotatedTransform == null) rotatedTransform = transform;
-    //
-    //     Gizmos.color = Color.white;
-    //     UnityEditor.Handles.DrawWireDisc(rotatedTransform.position, Vector3.forward, flashLightRadius);
-    //     UnityEditor.Handles.DrawWireDisc(rotatedTransform.position, Vector3.forward, pickupRadius);
-    //
-    //     Vector3 angle1 = DirectionFromAngle(-rotatedTransform.eulerAngles.z, -angle / 2);
-    //     Vector3 angle2 = DirectionFromAngle(-rotatedTransform.eulerAngles.z, angle / 2);
-    //
-    //     Gizmos.color = Color.green;
-    //     Gizmos.DrawLine(rotatedTransform.position, rotatedTransform.position + angle1 * flashLightRadius);
-    //     Gizmos.DrawLine(rotatedTransform.position, rotatedTransform.position + angle2 * flashLightRadius);
-    // }
+    void OnDrawGizmos(){
+        //Gizmos.DrawWireCube(transform.position, boxSize);
+        if (rotatedTransform == null) rotatedTransform = transform;
 
-    // private Vector2 DirectionFromAngle(float eulerY, float degreeAngle)
-    // {
-    //     degreeAngle += eulerY;
-    //     return new Vector2(Mathf.Sin(degreeAngle * Mathf.Deg2Rad), Mathf.Cos(degreeAngle * Mathf.Deg2Rad));
-    // }
+        Gizmos.color = Color.white;
+        UnityEditor.Handles.DrawWireDisc(rotatedTransform.position, Vector3.forward, flashLightRadius);
+        UnityEditor.Handles.DrawWireDisc(rotatedTransform.position, Vector3.forward, pickupRadius);
+
+        Vector3 angle1 = DirectionFromAngle(-rotatedTransform.eulerAngles.z, -angle / 2);
+        Vector3 angle2 = DirectionFromAngle(-rotatedTransform.eulerAngles.z, angle / 2);
+
+        Gizmos.color = Color.green;
+        Gizmos.DrawLine(rotatedTransform.position, rotatedTransform.position + angle1 * flashLightRadius);
+        Gizmos.DrawLine(rotatedTransform.position, rotatedTransform.position + angle2 * flashLightRadius);
+    }
+
+    private Vector2 DirectionFromAngle(float eulerY, float degreeAngle)
+    {
+        degreeAngle += eulerY;
+        return new Vector2(Mathf.Sin(degreeAngle * Mathf.Deg2Rad), Mathf.Cos(degreeAngle * Mathf.Deg2Rad));
+    }
 }
