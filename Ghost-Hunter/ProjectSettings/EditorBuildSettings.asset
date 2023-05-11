@@ -21,6 +21,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Base.unity
     guid: 11d60a65168829540a0160e5e6bd72f0
   - enabled: 1
-    path: Assets/Scenes/FinalCutscene.unity
-    guid: 6707fd5170df5ef4b8aacdebce061de9
+    path: Assets/Scenes/HowToPlay.unity
+    guid: f49b62ffc1d2d472ea10818c0862a761
   m_configObjects: {}
