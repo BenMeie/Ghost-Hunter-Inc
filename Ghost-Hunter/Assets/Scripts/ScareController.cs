@@ -69,6 +69,8 @@ public class ScareController : MonoBehaviour
         //print("player big dead");
         healthManager.DecreaseHealth();
         postProcessing.PlayerDamaged();
+        StartCoroutine(ghostScript.attack());
+        
     }
 
     private void ClearAll()
