@@ -89,9 +89,7 @@ Sprites
 * [Character : PIPOYA character 32x32 sprites generator](https://pipoya.itch.io/pipoya-free-rpg-character-sprites-32x32)
 
 Sounds
-* [Weather : Epidemic Sound](https://www.epidemicsound.com/sound-effects/)
-* [Footsteps: Epidemic Sound](https://www.epidemicsound.com/sound-effects/)
-* [Ghost : Epidemic Sound](https://www.epidemicsound.com/sound-effects/)
+* [Thunder : Free sounds - DragishaRambo21](https://freesound.org/people/DragishaRambo21/sounds/345920/)
 * [Main Menu Song : Uppbeat - Danijel Zambo](https://uppbeat.io/track/danijel-zambo/friendly-ghost?rt=uc-referral)
 * [Game Song : Uppbeat - Brandon Hopkins](https://uppbeat.io/t/brandon-hopkins/neighborhood)
 * [Letter Cutscene Page Turned : Free sounds - krnash](https://freesound.org/people/krnash/sounds/389807/)
