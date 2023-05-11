@@ -87,6 +87,7 @@ README.md
 Sprites
 * [Ghost : Penzilla - Hooded Protagonist](https://penzilla.itch.io/hooded-protagonist)
 * [Character : PIPOYA character 32x32 sprites generator](https://pipoya.itch.io/pipoya-free-rpg-character-sprites-32x32)
+* [Mementos: Craftpix.net - Undead Loot Icons](https://craftpix.net/freebies/free-undead-loot-pixel-art-icons/)
 
 Sounds
 * [Weather : Epidemic Sound](https://www.epidemicsound.com/sound-effects/)
@@ -98,6 +99,9 @@ Sounds
 * [Character Select Song : Free sounds - 13NHarri](https://freesound.org/people/13NHarri/sounds/511043/)
 * [Credits Song : Free sounds - Migfus20](https://freesound.org/people/Migfus20/sounds/683265/)
 * [Jumpscare : Free sounds - EliplayzEP](https://freesound.org/people/EliplayzEP/sounds/653730/)
+* [Ritual Sound : Free sounds - UlrichWehner](https://freesound.org/people/UlrichWehner/sounds/638396/)
+* [Ghost Scream : Free sounds - onderwish](https://freesound.org/people/onderwish/sounds/469141/)
+* [Blowing candles : Free sounds - STUDIO BADA](https://freesound.org/people/STUDIO%20BADA/sounds/235792/)
 
 Assets
 * [Cursors : Pixel Cursors](https://assetstore.unity.com/packages/2d/gui/icons/pixel-cursors-109256)
