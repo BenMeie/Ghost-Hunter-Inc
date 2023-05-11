@@ -87,6 +87,7 @@ README.md
 Sprites
 * [Ghost : Penzilla - Hooded Protagonist](https://penzilla.itch.io/hooded-protagonist)
 * [Character : PIPOYA character 32x32 sprites generator](https://pipoya.itch.io/pipoya-free-rpg-character-sprites-32x32)
+* [Mementos: Craftpix.net - Undead Loot Icons](https://craftpix.net/freebies/free-undead-loot-pixel-art-icons/)
 
 Sounds
 * [Weather : Epidemic Sound](https://www.epidemicsound.com/sound-effects/)
