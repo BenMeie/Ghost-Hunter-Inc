@@ -42,7 +42,7 @@ Material:
     m_Ints: []
     m_Floats:
     - _Amount: 100
-    - _Blend: 0
+    - _Blend: 0.009164825
     - _NoiseAmount: 150
     - _NoiseSize: 150
     - _Size: 0.4
