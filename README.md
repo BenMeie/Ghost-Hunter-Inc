@@ -61,25 +61,16 @@ Ghost Hunter Inc is an isometric pixel art style game where you find the necessa
 <!-- Getting Started -->
 ## Getting Started
 Ghost Hunter Inc is a pretty easy game to install! Here is how.
-
-### Prerequisites
-```sh
-  //TODO: what the user need to do before installing the game
-  ```
   
-### Installation
-```sh
-  //TODO: what the user need to do to install the game
+### Download
+```
+  https://drive.google.com/drive/folders/1SwnrmrR3b4NwDk_5rEe2-3IoY3OFLzFZ?usp=sharing
   ```
   
 <p align="right"><a href="#readme-top">:arrow_up:back to top</a></p>
 
 <!-- Acknowledgments -->
 ## Acknowledgments
-```sh
-  //TODO: Put everything used to create the game
-  * [name of the website](link)
-  ```
 README.md
 * [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
 * [GitHub Best README Template](https://github.com/othneildrew/Best-README-Template/blob/master/README.md#readme-top)
