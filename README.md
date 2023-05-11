@@ -98,6 +98,9 @@ Sounds
 * [Character Select Song : Free sounds - 13NHarri](https://freesound.org/people/13NHarri/sounds/511043/)
 * [Credits Song : Free sounds - Migfus20](https://freesound.org/people/Migfus20/sounds/683265/)
 * [Jumpscare : Free sounds - EliplayzEP](https://freesound.org/people/EliplayzEP/sounds/653730/)
+* [Ritual Sound : Free sounds - UlrichWehner](https://freesound.org/people/UlrichWehner/sounds/638396/)
+* [Ghost Scream : Free sounds - onderwish](https://freesound.org/people/onderwish/sounds/469141/)
+* [Blowing candles : Free sounds - STUDIO BADA](https://freesound.org/people/STUDIO%20BADA/sounds/235792/)
 
 Assets
 * [Cursors : Pixel Cursors](https://assetstore.unity.com/packages/2d/gui/icons/pixel-cursors-109256)
