@@ -18,10 +18,18 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer spriteObject;
     private bool[] directions;
     [Header("Sprites")]
-    public Sprite idle_down;
-    public Sprite idle_up;
-    public Sprite idle_left;
-    public Sprite idle_right;
+    [SerializeField] private CharacterSprites Daisy;
+    [SerializeField] private CharacterSprites Daniel;
+    [SerializeField] private CharacterSprites Abi;
+    [SerializeField] private CharacterSprites Ben;
+    [SerializeField] private CharacterSprites Brielle;
+    [SerializeField] private CharacterSprites Chris;
+    [SerializeField] private CharacterSprites Joseph;
+    [SerializeField] private CharacterSprites Noel;
+    [SerializeField] private CharacterSprites Guerrero;
+
+    private CharacterSprites character;
+    private string name;
 
     // Start is called before the first frame update
     void Start()
@@ -31,14 +39,43 @@ public class PlayerMovement : MonoBehaviour
         movementAnimation = GetComponent<Animator>();
         spriteObject = GetComponent<SpriteRenderer>();
         directions = new []{true, false, false, false};
+        name = PlayerPrefs.GetString("Character");
+        switch (name)
+        {
+            case "Daisy":
+                character = Daisy;
+                break;
+            case "Daniel":
+                character = Daniel;
+                break;
+            case "Abigaelle":
+                character = Abi;
+                break;
+            case "Benjamin":
+                character = Ben;
+                break;
+            case "Brielle":
+                character = Brielle;
+                break;
+            case "Chris":
+                character = Chris;
+                break;
+            case "Joseph":
+                character = Joseph;
+                break;
+            case "Noel":
+                character = Noel;
+                break;
+            case "Mr. Guerrero":
+                character = Guerrero;
+                name = "Teacher";
+                break;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        bool horizontalButtonPressed = Input.GetButton("Horizontal");
-        bool verticalButtonPressed = Input.GetButton("Vertical");
-        
         main.transform.position = new Vector3(transform.position.x, transform.position.y, -10);
         //code inspired by a Brackeys video
         moveCharacter();
@@ -50,16 +87,16 @@ public class PlayerMovement : MonoBehaviour
             switch (Array.IndexOf(directions, true))
             {
                 case 0:
-                    spriteObject.sprite = idle_down;
+                    spriteObject.sprite = character.down;
                     break;
                 case 1:
-                    spriteObject.sprite = idle_up;
+                    spriteObject.sprite = character.up;
                     break;
                 case 2:
-                    spriteObject.sprite = idle_left;
+                    spriteObject.sprite = character.left;
                     break;
                 case 3:
-                    spriteObject.sprite = idle_right;
+                    spriteObject.sprite = character.right;
                     break;
             }
         }
@@ -85,13 +122,13 @@ public class PlayerMovement : MonoBehaviour
         if (xDirection > 0)//if x is positive, we are moving to the right
         {
             movementAnimation.enabled = true;
-            movementAnimation.Play("Right");
+            movementAnimation.Play(name + "_right");
             directions = new []{false, false, false, true};
         }
         else if (xDirection < 0)//if x is negative, we want to go left
         {
             movementAnimation.enabled = true;
-            movementAnimation.Play("Left");
+            movementAnimation.Play(name + "_left");
             directions = new []{false, false, true, false};
         }
         else //if x is 0, we want to only use the y value
@@ -99,7 +136,7 @@ public class PlayerMovement : MonoBehaviour
             if (yDirection > 0) //if y is positive, we want to move up
             {
                 movementAnimation.enabled = true;
-                movementAnimation.Play("Up");
+                movementAnimation.Play(name + "_up");
                 directions = new []{false, true, false, false};
             } 
             else//if y is negative, we want to move down
@@ -107,7 +144,7 @@ public class PlayerMovement : MonoBehaviour
                 if (yDirection < 0)
                 {
                     movementAnimation.enabled = true;
-                    movementAnimation.Play("Down");
+                    movementAnimation.Play(name + "_down");
                     directions = new []{true, false, false, false};
                 }
             }

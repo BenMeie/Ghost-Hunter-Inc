@@ -17,7 +17,11 @@ public class GameManager : MonoBehaviour
     public PostProcessing postProcessing;
 
     public TextMeshProUGUI mementoDisplayUi;
-    public TextMeshProUGUI ritualFailedUi;
+//<<<<<<< Updated upstream
+    //public TextMeshProUGUI ritualFailedUi;
+//=======
+    public GameObject inventory;
+//>>>>>>> Stashed changes
 
     [Header("Mementos")]
     //how many mementos to spawn
@@ -61,9 +65,10 @@ public class GameManager : MonoBehaviour
         
         //displays the UI for finding the memento
         mementoDisplayUi.GetComponent<MementoDisplayController>().displayMemento(memento);
-        
+        inventory.GetComponent<InventoryScript>().addMemento(memento);
         
         ghost.IncreaseMinAnger();
+        
 
         if(mementosFound >= mementosSpawned){
             //ritualSpot.activate(); or something
@@ -75,14 +80,23 @@ public class GameManager : MonoBehaviour
         Debug.Log("Attempting Ritual");
         if (mementosFound == mementosSpawned)
         {
+            PlayerPrefs.SetInt("Finished", 1);
+            ghost.updating = false;
+            ghost.isattacking = true;
+            ghost.Stun();
             //GameOver();
             ExorciseGhost();
         }
         else
         {
-            ritualFailedUi.GetComponent<TextMeshProUGUI>().text = ($"{mementosSpawned - mementosFound} More Mementos Needed");
-            ritualFailedUi.GetComponent<Animator>().SetTrigger("AttemptedRitual");
+
             print($"{mementosSpawned - mementosFound} More Mementos Needed");
+
+            
+            //have the remaining inventory slots flash red
+            inventory.GetComponent<InventoryScript>().failRitual();
+            print("More Mementos Needed");
+
         }
     }
 
@@ -115,12 +129,12 @@ public class GameManager : MonoBehaviour
         jumpscare.GetComponent<AudioSource>().Play();
         // print("player big dead");
         //Disabled for easier testing
-        fader.FadeToGO("MainMenu");
+        fader.FadeToGO("Main Menu");
     }
 
     //this is the win condition
     public static void ExorciseGhost()
     {
-        fader.FadeToGO("Credits");
+        fader.FadeToGO("FinalCutscene");
     }
 }

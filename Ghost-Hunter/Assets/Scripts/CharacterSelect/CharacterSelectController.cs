@@ -8,6 +8,6 @@ public class CharacterSelectController : MonoBehaviour
     public void CharacterSelect(string name)
     {
         PlayerPrefs.SetString("Character", name);
-        fader.FadeTo("FirstCutscene");
+        fader.FadeTo("HowToPlay");
     }
 }
